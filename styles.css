@@ -37,11 +37,13 @@ header .logo {
 header nav ul {
     list-style-type: none;
     padding: 0;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
 }
 
 header nav ul li {
     display: inline;
-    margin: 0 10px;
 }
 
 header nav ul li a {
@@ -49,13 +51,18 @@ header nav ul li a {
     text-decoration: none;
 }
 
-main {
+.content-wrapper {
+    display: flex;
+    padding: 20px;
     flex: 1;
+}
+
+main {
+    flex: 3;
+    padding: 20px;
     display: flex;
     flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    padding: 20px;
+    align-items: center; /* Center the main content */
 }
 
 section {
@@ -63,10 +70,33 @@ section {
     border: 1px solid #ccc;
     border-radius: 8px;
     padding: 20px;
-    margin: 20px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin: 20px 0;
     width: 80%;
-    max-width: 600px;
+    max-width: 800px;
+    text-align: center;
+}
+
+#hero {
+    background-color: #f4f4f4;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    padding: 20px;
+    margin: 20px 0;
+    text-align: center;
+}
+
+#news .post-list, #reviews .post-list {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    width: 100%;
+}
+
+.post {
+    background-color: #f4f4f4;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    padding: 20px;
     text-align: center;
 }
 
@@ -84,25 +114,50 @@ footer {
     margin-top: auto;
 }
 
+.social-media {
+    margin-top: 10px;
+}
+
+.social-media a {
+    color: white;
+    text-decoration: none;
+    margin: 0 5px;
+}
+
+/* Sidebar Styling */
+.sidebar {
+    background-color: #f4f4f4;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    padding: 20px;
+    margin-left: 20px;
+    width: 300px;
+    text-align: center;
+    flex: 1;
+}
+
 /* Responsive Design */
 @media (max-width: 600px) {
-    header .header-content {
+    .content-wrapper {
         flex-direction: column;
+    }
+
+    .post-list {
+        grid-template-columns: 1fr;
     }
 
     header nav ul {
-        text-align: center;
-        display: flex;
         flex-direction: column;
+        align-items: center;
     }
 
     header nav ul li {
-        display: block;
         margin: 10px 0;
     }
 
-    section {
+    .sidebar {
         width: 100%;
-        margin: 10px 0;
+        margin-left: 0;
+        margin-top: 20px;
     }
 }
