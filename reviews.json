@@ -1,0 +1,17 @@
+[
+    {
+        "title": "Review Title 1",
+        "summary": "This is a summary of the first review.",
+        "date": "2024-07-01"
+    },
+    {
+        "title": "Review Title 2",
+        "summary": "This is a summary of the second review.",
+        "date": "2024-07-02"
+    },
+    {
+        "title": "Review Title 3",
+        "summary": "This is a test of the third review.",
+        "date": "2024-07-03"
+    }
+]

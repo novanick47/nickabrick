@@ -137,7 +137,7 @@ footer {
 }
 
 /* Button Styling */
-.news-button {
+.news-button, .reviews-button {
     display: inline-block;
     padding: 10px 20px;
     margin-top: 20px;
@@ -148,7 +148,7 @@ footer {
     text-align: center;
 }
 
-.news-button:hover {
+.news-button:hover, .reviews-button:hover {
     background-color: #555;
 }
 
