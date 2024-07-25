@@ -130,50 +130,84 @@ footer {
     border: 1px solid #ccc;
     border-radius: 8px;
     padding: 20px;
-    margin-left: 20px;
-    width: 300px;
+    margin: 20px;
     text-align: center;
-    flex: 1;
+    width: 40%; /* Adjusted to be about half the size */
+    max-width: 400px;
 }
 
-/* Button Styling */
-.news-button, .reviews-button {
-    display: inline-block;
-    padding: 10px 20px;
+/* Pagination Buttons */
+.pagination {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
     margin-top: 20px;
+}
+
+.pagination button {
+    padding: 10px 20px;
     background-color: #333;
     color: white;
-    text-decoration: none;
+    border: none;
     border-radius: 5px;
-    text-align: center;
+    cursor: pointer;
 }
 
-.news-button:hover, .reviews-button:hover {
+.pagination button:disabled {
+    background-color: #999;
+    cursor: not-allowed;
+}
+
+/* Flexbox Grid */
+.articles-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+}
+
+.articles-list .post {
+    flex: 1 1 calc(33.333% - 20px); /* 3 items per row with a gap of 20px */
+    box-sizing: border-box;
+    max-width: calc(33.333% - 20px);
+}
+
+/* Responsive Grid Adjustments */
+@media (max-width: 1200px) {
+    .articles-list .post {
+        flex: 1 1 calc(50% - 20px); /* 2 items per row on medium screens */
+        max-width: calc(50% - 20px);
+    }
+}
+
+@media (max-width: 768px) {
+    .articles-list .post {
+        flex: 1 1 100%; /* 1 item per row on small screens */
+        max-width: 100%;
+    }
+}
+
+/* Button Link Styling */
+.button-link {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #333;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    text-decoration: none;
+    text-align: center;
+    cursor: pointer;
+    margin-top: 20px;
+}
+
+.button-link:hover {
     background-color: #555;
 }
 
-/* Responsive Design */
-@media (max-width: 600px) {
-    .content-wrapper {
-        flex-direction: column;
-    }
-
-    .post-list {
-        grid-template-columns: 1fr;
-    }
-
-    header nav ul {
-        flex-direction: column;
-        align-items: center;
-    }
-
-    header nav ul li {
-        margin: 10px 0;
-    }
-
-    .sidebar {
-        width: 100%;
-        margin-left: 0;
-        margin-top: 20px;
-    }
+.post img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+    margin-bottom: 10px;
 }

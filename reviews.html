@@ -4,12 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Reviews - Nick-a-Brick's Lego Brick Blog</title>
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
     <header>
         <div class="header-content">
-            <img src="logo1.jpg" alt="Logo" class="logo">
+            <img src="images/logo1.jpg" alt="Logo" class="logo">
             <h1>Welcome to Nick-a-Brick's Brick Blog!</h1>
         </div>
         <nav>
@@ -26,23 +26,12 @@
     <main>
         <section id="reviews">
             <h2>Review Articles</h2>
-            <div id="review-articles">
-                <article class="post">
-                    <h3>Review Title 1</h3>
-                    <p>This is the content of the first review item. test</p>
-                    <p>Date: 2024-07-01</p>
-                </article>
-                <article class="post">
-                    <h3>Review Title 2</h3>
-                    <p>This is the content of the test review item.</p>
-                    <p>Date: 2024-07-02</p>
-                </article>
-                <article class="post">
-                    <h3>Review Title 3</h3>
-                    <p>This is the content of the third review item.</p>
-                    <p>Date: 2024-07-03</p>
-                </article>
-                <!-- Add more reviews here as needed -->
+            <div id="reviews-articles-list">
+                <!-- Review articles will be dynamically loaded here -->
+            </div>
+            <div class="pagination">
+                <button id="prev-reviews" disabled>Previous</button>
+                <button id="next-reviews">Next</button>
             </div>
         </section>
     </main>
@@ -53,5 +42,56 @@
             <a href="#">Facebook</a> | <a href="#">Twitter</a> | <a href="#">Instagram</a>
         </div>
     </footer>
+
+    <script src="js/scripts.js?v=1.0"></script>
+    <script>
+        let reviewsPage = 1;
+        const reviewsPerPage = 10;
+
+        document.addEventListener('DOMContentLoaded', function () {
+            loadReviewsPage(reviewsPage);
+            
+            document.getElementById('prev-reviews').addEventListener('click', function() {
+                if (reviewsPage > 1) {
+                    reviewsPage--;
+                    loadReviewsPage(reviewsPage);
+                }
+            });
+            
+            document.getElementById('next-reviews').addEventListener('click', function() {
+                reviewsPage++;
+                loadReviewsPage(reviewsPage);
+            });
+        });
+
+        function loadReviewsPage(page) {
+            fetch('data/articles.json')
+                .then(response => response.json())
+                .then(data => {
+                    const reviewArticles = data.filter(article => article.type === 'reviews');
+                    const startIndex = (page - 1) * reviewsPerPage;
+                    const endIndex = startIndex + reviewsPerPage;
+                    const paginatedReviews = reviewArticles.slice(startIndex, endIndex);
+
+                    const reviewsContainer = document.getElementById('reviews-articles-list');
+                    reviewsContainer.innerHTML = ''; // Clear existing content
+                    paginatedReviews.forEach(review => {
+                        const article = document.createElement('article');
+                        article.classList.add('post');
+                        article.innerHTML = `
+                            <h3>${review.title}</h3>
+                            <p>${review.summary}</p>
+                            <p>Date: ${review.date}</p>
+                            <p>Tags: ${review.tags.map(tag => `<a href="#" class="tag" data-tag="${tag}">${tag}</a>`).join(', ')}</p>
+                        `;
+                        reviewsContainer.appendChild(article);
+                    });
+
+                    document.getElementById('prev-reviews').disabled = page === 1;
+                    document.getElementById('next-reviews').disabled = endIndex >= reviewArticles.length;
+                })
+                .catch(error => console.error('Error fetching review articles:', error));
+        }
+    </script>
 </body>
 </html>
