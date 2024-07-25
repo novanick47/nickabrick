@@ -5,8 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>News - Nick-a-Brick's Lego Brick Blog</title>
     <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/news.css">
 </head>
-<body>
+<body class="news-page">
     <header>
         <div class="header-content">
             <img src="images/logo1.jpg" alt="Logo" class="logo">
@@ -43,55 +44,13 @@
         </div>
     </footer>
 
-    <script src="js/scripts.js?v=1.0"></script>
-    <script>
-        let newsPage = 1;
-        const newsPerPage = 10;
+    <div id="overlay" class="overlay">
+        <div id="expanded-article" class="expanded-article">
+            <button id="close-expanded-article" class="close-button">&times;</button>
+            <div id="expanded-content"></div>
+        </div>
+    </div>
 
-        document.addEventListener('DOMContentLoaded', function () {
-            loadNewsPage(newsPage);
-            
-            document.getElementById('prev-news').addEventListener('click', function() {
-                if (newsPage > 1) {
-                    newsPage--;
-                    loadNewsPage(newsPage);
-                }
-            });
-            
-            document.getElementById('next-news').addEventListener('click', function() {
-                newsPage++;
-                loadNewsPage(newsPage);
-            });
-        });
-
-        function loadNewsPage(page) {
-            fetch('data/articles.json')
-                .then(response => response.json())
-                .then(data => {
-                    const newsArticles = data.filter(article => article.type === 'news');
-                    const startIndex = (page - 1) * newsPerPage;
-                    const endIndex = startIndex + newsPerPage;
-                    const paginatedNews = newsArticles.slice(startIndex, endIndex);
-
-                    const newsContainer = document.getElementById('news-articles-list');
-                    newsContainer.innerHTML = ''; // Clear existing content
-                    paginatedNews.forEach(news => {
-                        const article = document.createElement('article');
-                        article.classList.add('post');
-                        article.innerHTML = `
-                            <h3>${news.title}</h3>
-                            <p>${news.summary}</p>
-                            <p>Date: ${news.date}</p>
-                            <p>Tags: ${news.tags.map(tag => `<a href="#" class="tag" data-tag="${tag}">${tag}</a>`).join(', ')}</p>
-                        `;
-                        newsContainer.appendChild(article);
-                    });
-
-                    document.getElementById('prev-news').disabled = page === 1;
-                    document.getElementById('next-news').disabled = endIndex >= newsArticles.length;
-                })
-                .catch(error => console.error('Error fetching news articles:', error));
-        }
-    </script>
+    <script src="js/news.js?v=1.0"></script>
 </body>
 </html>

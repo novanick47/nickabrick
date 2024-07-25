@@ -6,7 +6,7 @@
     <title>Nick-a-Brick's Lego Brick Blog</title>
     <link rel="stylesheet" href="css/styles.css">
 </head>
-<body>
+<body class="index-page">
     <header>
         <div class="header-content">
             <img src="images/logo1.jpg" alt="Logo" class="logo">
@@ -37,7 +37,7 @@
 
             <section id="news">
                 <h2>News Section</h2>
-                <div id="news-post-list" class="post-list">
+                <div class="post-list" id="news-post-list">
                     <!-- Latest 3 news items will be dynamically included here -->
                 </div>
                 <a href="news.html" class="button-link">See More News</a>
@@ -45,8 +45,8 @@
 
             <section id="reviews">
                 <h2>Latest Reviews</h2>
-                <div id="reviews-post-list" class="post-list">
-                    <!-- Latest 3 reviews items will be dynamically included here -->
+                <div class="post-list" id="reviews-post-list">
+                    <!-- Latest 3 reviews will be dynamically included here -->
                 </div>
                 <a href="reviews.html" class="button-link">See More Reviews</a>
             </section>
@@ -75,6 +75,13 @@
             <a href="#">Facebook</a> | <a href="#">Twitter</a> | <a href="#">Instagram</a>
         </div>
     </footer>
+
+    <div id="overlay" class="overlay">
+        <div id="expanded-article" class="expanded-article">
+            <button id="close-expanded-article" class="close-button">&times;</button>
+            <div id="expanded-content"></div>
+        </div>
+    </div>
 
     <script src="js/scripts.js?v=1.0"></script>
 </body>

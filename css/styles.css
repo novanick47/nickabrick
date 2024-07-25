@@ -98,6 +98,12 @@ section {
     border-radius: 8px;
     padding: 20px;
     text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.post:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
 img {
@@ -210,4 +216,113 @@ footer {
     height: auto;
     border-radius: 8px;
     margin-bottom: 10px;
+}
+
+.content-wrapper {
+    position: relative;
+}
+
+.read-more {
+    display: inline-block;
+    margin-top: 10px;
+    color: blue;
+    cursor: pointer;
+    text-decoration: underline;
+}
+
+.content-wrapper .content {
+    transition: max-height 0.2s ease-out;
+}
+
+.content-wrapper.expanded .content {
+    max-height: none;
+}
+
+/* Overlay Styles */
+.overlay {
+    display: none; /* Hidden by default */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8); /* Semi-transparent background */
+    z-index: 1000; /* Place it on top */
+    justify-content: center;
+    align-items: center;
+}
+
+.expanded-article {
+    background: white;
+    width: 80%;
+    max-width: 800px;
+    max-height: 90%;
+    overflow: auto;
+    position: relative;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    border-radius: 8px;
+}
+
+.close-button {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: #333;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    font-size: 20px;
+    cursor: pointer;
+    text-align: center;
+    line-height: 30px;
+}
+
+.close-button:hover {
+    background: #555;
+}
+
+/* Specific styles for expanded articles */
+.index-page .post-list .post.expanded {
+    width: 90vw;
+    height: 90vh;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1000;
+    overflow: auto;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+}
+
+.index-page .post-list .close-button {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background-color: red;
+    color: white;
+    font-size: 20px;
+    width: 30px;
+    height: 30px;
+    line-height: 30px;
+    text-align: center;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.index-page .post-list .close-button:hover {
+    background-color: darkred;
+}
+
+/* Responsive styles */
+@media (max-width: 768px) {
+    .index-page .post-list .post {
+        width: 100%; /* Full width on small screens */
+        max-width: 100%;
+    }
 }
