@@ -2,18 +2,18 @@ let reviewsPage = 1;
 const reviewsPerPage = 10;
 
 document.addEventListener('DOMContentLoaded', function () {
-    loadreviewsPage(reviewsPage);
-    
+    loadReviewsPage(reviewsPage);
+
     document.getElementById('prev-reviews').addEventListener('click', function() {
         if (reviewsPage > 1) {
             reviewsPage--;
-            loadreviewsPage(reviewsPage);
+            loadReviewsPage(reviewsPage);
         }
     });
-    
+
     document.getElementById('next-reviews').addEventListener('click', function() {
         reviewsPage++;
-        loadreviewsPage(reviewsPage);
+        loadReviewsPage(reviewsPage);
     });
 
     document.addEventListener('click', function(event) {
@@ -24,30 +24,30 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 });
 
-function loadreviewsPage(page) {
+function loadReviewsPage(page) {
     fetch('data/articles.json')
         .then(response => response.json())
         .then(data => {
-            const reviewsArticles = data.filter(article => article.type === 'reviews');
+            const reviewArticles = data.filter(article => article.type === 'reviews');
             const startIndex = (page - 1) * reviewsPerPage;
             const endIndex = startIndex + reviewsPerPage;
-            const paginatedreviews = reviewsArticles.slice(startIndex, endIndex);
+            const paginatedReviews = reviewArticles.slice(startIndex, endIndex);
 
             const reviewsContainer = document.getElementById('reviews-articles-list');
             reviewsContainer.innerHTML = ''; // Clear existing content
-            paginatedreviews.forEach(reviews => {
+            paginatedReviews.forEach(review => {
                 const article = document.createElement('article');
                 article.classList.add('post');
 
                 let imagesHtml = '';
-                if (reviews.image) {
-                    imagesHtml += `<img src="${reviews.image}" alt="${reviews.title}">`;
+                if (review.image) {
+                    imagesHtml += `<img src="${review.image}" alt="${review.title}">`;
                 }
 
                 let videoHtml = '';
-                if (reviews.video) {
+                if (review.video) {
                     videoHtml = `<video controls>
-                                    <source src="${reviews.video}" type="video/mp4">
+                                    <source src="${review.video}" type="video/mp4">
                                     Your browser does not support the video tag.
                                  </video>`;
                 }
@@ -55,14 +55,14 @@ function loadreviewsPage(page) {
                 article.innerHTML = `
                     ${imagesHtml}
                     ${videoHtml}
-                    <h3>${reviews.title}</h3>
-                    <p>${reviews.summary}</p>
-                    <p>Date: ${reviews.date}</p>
+                    <h3>${review.title}</h3>
+                    <p>${review.summary}</p>
+                    <p>Date: ${review.date}</p>
                     <div class="content-wrapper">
-                        <div class="content" style="max-height: 200px; overflow: hidden;">${reviews.content ? reviews.content : ''}</div>
+                        <div class="content" style="max-height: 200px; overflow: hidden;">${review.content ? review.content : ''}</div>
                     </div>
-                    ${reviews.content && reviews.content.length > 300 ? `<a href="#" class="read-more">... read more</a>` : ''}
-                    <p>Tags: ${reviews.tags.map(tag => `<a href="#" class="tag" data-tag="${tag}">${tag}</a>`).join(', ')}</p>
+                    ${review.content && review.content.length > 300 ? `<a href="#" class="read-more">... read more</a>` : ''}
+                    <p>Tags: ${review.tags.map(tag => `<a href="#" class="tag" data-tag="${tag}">${tag}</a>`).join(', ')}</p>
                 `;
                 article.addEventListener('click', function(event) {
                     if (!event.target.classList.contains('read-more') && !event.target.classList.contains('tag')) {
@@ -86,10 +86,20 @@ function loadreviewsPage(page) {
                 });
             });
 
+            // Add event listeners for tag clicks
+            document.querySelectorAll('.tag').forEach(tag => {
+                tag.addEventListener('click', function(event) {
+                    event.preventDefault();
+                    const tagName = this.getAttribute('data-tag');
+                    closeArticle(document.querySelector('.expanded'));
+                    window.location.href = `tags.html?tag=${tagName}`;
+                });
+            });
+
             document.getElementById('prev-reviews').disabled = page === 1;
-            document.getElementById('next-reviews').disabled = endIndex >= reviewsArticles.length;
+            document.getElementById('next-reviews').disabled = endIndex >= reviewArticles.length;
         })
-        .catch(error => console.error('Error fetching reviews articles:', error));
+        .catch(error => console.error('Error fetching review articles:', error));
 }
 
 function openArticle(article) {
@@ -105,9 +115,11 @@ function openArticle(article) {
 }
 
 function closeArticle(article) {
-    article.classList.remove('expanded');
-    const closeButton = article.querySelector('.close-button');
-    if (closeButton) {
-        closeButton.remove();
+    if (article) {
+        article.classList.remove('expanded');
+        const closeButton = article.querySelector('.close-button');
+        if (closeButton) {
+            closeButton.remove();
+        }
     }
 }

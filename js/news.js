@@ -86,6 +86,16 @@ function loadNewsPage(page) {
                 });
             });
 
+            // Add event listeners for tag clicks
+            document.querySelectorAll('.tag').forEach(tag => {
+                tag.addEventListener('click', function(event) {
+                    event.preventDefault();
+                    const tagName = this.getAttribute('data-tag');
+                    closeArticle(document.querySelector('.expanded'));
+                    window.location.href = `tags.html?tag=${tagName}`;
+                });
+            });
+
             document.getElementById('prev-news').disabled = page === 1;
             document.getElementById('next-news').disabled = endIndex >= newsArticles.length;
         })
@@ -105,9 +115,11 @@ function openArticle(article) {
 }
 
 function closeArticle(article) {
-    article.classList.remove('expanded');
-    const closeButton = article.querySelector('.close-button');
-    if (closeButton) {
-        closeButton.remove();
+    if (article) {
+        article.classList.remove('expanded');
+        const closeButton = article.querySelector('.close-button');
+        if (closeButton) {
+            closeButton.remove();
+        }
     }
 }

@@ -98,6 +98,16 @@ document.addEventListener('DOMContentLoaded', function() {
                     }
                 });
             });
+
+            // Add event listeners for tag clicks
+            document.querySelectorAll('.tag').forEach(tag => {
+                tag.addEventListener('click', function(event) {
+                    event.preventDefault();
+                    const tagName = this.getAttribute('data-tag');
+                    closeArticle(document.querySelector('.expanded'));
+                    window.location.href = `tags.html?tag=${tagName}`;
+                });
+            });
         })
         .catch(error => console.error('Error fetching articles:', error));
 
@@ -122,9 +132,11 @@ function openArticle(article) {
 }
 
 function closeArticle(article) {
-    article.classList.remove('expanded');
-    const closeButton = article.querySelector('.close-button');
-    if (closeButton) {
-        closeButton.remove();
+    if (article) {
+        article.classList.remove('expanded');
+        const closeButton = article.querySelector('.close-button');
+        if (closeButton) {
+            closeButton.remove();
+        }
     }
 }
