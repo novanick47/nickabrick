@@ -5,8 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Reviews - Nick-a-Brick's Lego Brick Blog</title>
     <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/reviews.css">
 </head>
-<body>
+<body class="reviews-page">
     <header>
         <div class="header-content">
             <img src="images/logo1.jpg" alt="Logo" class="logo">
@@ -26,7 +27,7 @@
     <main>
         <section id="reviews">
             <h2>Review Articles</h2>
-            <div id="reviews-articles-list">
+            <div id="reviews-articles-list" class="articles-list">
                 <!-- Review articles will be dynamically loaded here -->
             </div>
             <div class="pagination">
@@ -43,55 +44,13 @@
         </div>
     </footer>
 
-    <script src="js/scripts.js?v=1.0"></script>
-    <script>
-        let reviewsPage = 1;
-        const reviewsPerPage = 10;
+    <div id="overlay" class="overlay">
+        <div id="expanded-article" class="expanded-article">
+            <button id="close-expanded-article" class="close-button">&times;</button>
+            <div id="expanded-content"></div>
+        </div>
+    </div>
 
-        document.addEventListener('DOMContentLoaded', function () {
-            loadReviewsPage(reviewsPage);
-            
-            document.getElementById('prev-reviews').addEventListener('click', function() {
-                if (reviewsPage > 1) {
-                    reviewsPage--;
-                    loadReviewsPage(reviewsPage);
-                }
-            });
-            
-            document.getElementById('next-reviews').addEventListener('click', function() {
-                reviewsPage++;
-                loadReviewsPage(reviewsPage);
-            });
-        });
-
-        function loadReviewsPage(page) {
-            fetch('data/articles.json')
-                .then(response => response.json())
-                .then(data => {
-                    const reviewArticles = data.filter(article => article.type === 'reviews');
-                    const startIndex = (page - 1) * reviewsPerPage;
-                    const endIndex = startIndex + reviewsPerPage;
-                    const paginatedReviews = reviewArticles.slice(startIndex, endIndex);
-
-                    const reviewsContainer = document.getElementById('reviews-articles-list');
-                    reviewsContainer.innerHTML = ''; // Clear existing content
-                    paginatedReviews.forEach(review => {
-                        const article = document.createElement('article');
-                        article.classList.add('post');
-                        article.innerHTML = `
-                            <h3>${review.title}</h3>
-                            <p>${review.summary}</p>
-                            <p>Date: ${review.date}</p>
-                            <p>Tags: ${review.tags.map(tag => `<a href="#" class="tag" data-tag="${tag}">${tag}</a>`).join(', ')}</p>
-                        `;
-                        reviewsContainer.appendChild(article);
-                    });
-
-                    document.getElementById('prev-reviews').disabled = page === 1;
-                    document.getElementById('next-reviews').disabled = endIndex >= reviewArticles.length;
-                })
-                .catch(error => console.error('Error fetching review articles:', error));
-        }
-    </script>
+    <script src="js/reviews.js?v=1.0"></script>
 </body>
 </html>
