@@ -1,7 +1,6 @@
 const express = require('express');
 const fs = require('fs');
 const path = require('path');
-const fetch = require('node-fetch'); // Ensure node-fetch is installed
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -17,6 +16,7 @@ app.get('/search', async (req, res) => {
     }
 
     try {
+        const { default: fetch } = await import('node-fetch');
         const response = await fetch(`https://rebrickable.com/api/v3/lego/sets/?search=${query}&key=${REBRICKABLE_API_KEY}`);
         const data = await response.json();
         
