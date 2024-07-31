@@ -50,9 +50,7 @@ document.addEventListener('DOMContentLoaded', function () {
     const closeModalBtn = document.getElementsByClassName('close')[0];
     const searchForm = document.getElementById('searchForm');
     const resultsContainer = document.getElementById('results');
-    const paginationContainer = document.createElement('div');
-    paginationContainer.className = 'pagination';
-    resultsContainer.after(paginationContainer);
+    const paginationContainer = document.querySelector('.pagination');
     let currentPage = 1;
     let totalPages = 1;
 
@@ -93,7 +91,6 @@ document.addEventListener('DOMContentLoaded', function () {
                     </div>
                 `).join('');
 
-                // Add event listeners to images for enlarging
                 const setImages = document.querySelectorAll('.set-image');
                 setImages.forEach(img => {
                     img.addEventListener('click', function () {
@@ -115,6 +112,9 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     function renderPagination(query) {
+        // Clear existing pagination
+        paginationContainer.innerHTML = '';
+
         paginationContainer.innerHTML = `
             <button ${currentPage === 1 ? 'disabled' : ''} onclick="navigatePage('${query}', ${currentPage - 1})">Previous</button>
             <span>Page ${currentPage} of ${totalPages}</span>
@@ -133,6 +133,13 @@ document.addEventListener('DOMContentLoaded', function () {
         const modalImg = document.getElementById('modalImage');
         imageModal.style.display = 'block';
         modalImg.src = src;
+
+        // Add click listener to close image modal when clicking outside the image
+        imageModal.onclick = function (event) {
+            if (event.target === imageModal) {
+                imageModal.style.display = 'none';
+            }
+        }
     }
 
     const imageModal = document.getElementById('imageModal');
@@ -143,6 +150,9 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     window.onclick = function (event) {
+        if (event.target === modal) {
+            modal.style.display = 'none';
+        }
         if (event.target === imageModal) {
             imageModal.style.display = 'none';
         }
