@@ -89,9 +89,18 @@ document.addEventListener('DOMContentLoaded', function () {
                         <h3>${set.name}</h3>
                         <p>${set.set_num}</p>
                         <p>Year: ${set.year}</p>
-                        <img src="${set.set_img_url}" alt="${set.name}">
+                        <img src="${set.set_img_url}" alt="${set.name}" class="set-image">
                     </div>
                 `).join('');
+
+                // Add event listeners to images for enlarging
+                const setImages = document.querySelectorAll('.set-image');
+                setImages.forEach(img => {
+                    img.addEventListener('click', function () {
+                        showImageModal(this.src);
+                    });
+                });
+
                 totalPages = Math.ceil(data.count / 10); // Assuming 10 items per page
                 renderPagination(query);
             } else {
@@ -116,5 +125,26 @@ document.addEventListener('DOMContentLoaded', function () {
     window.navigatePage = function (query, page) {
         currentPage = page;
         fetchSearchResults(query, page);
+    }
+
+    // Function to show image modal
+    function showImageModal(src) {
+        const imageModal = document.getElementById('imageModal');
+        const modalImg = document.getElementById('modalImage');
+        imageModal.style.display = 'block';
+        modalImg.src = src;
+    }
+
+    const imageModal = document.getElementById('imageModal');
+    const closeImageModalBtn = document.getElementsByClassName('close-image-modal')[0];
+
+    closeImageModalBtn.onclick = function () {
+        imageModal.style.display = 'none';
+    }
+
+    window.onclick = function (event) {
+        if (event.target === imageModal) {
+            imageModal.style.display = 'none';
+        }
     }
 });
