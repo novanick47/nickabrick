@@ -2,8 +2,134 @@ document.addEventListener('DOMContentLoaded', function() {
     fetch('data/articles.json')
         .then(response => response.json())
         .then(data => {
+            // Existing code to handle articles...
+        })
+        .catch(error => console.error('Error fetching articles:', error));
+});
+
+function openArticle(article) {
+    article.classList.add('expanded');
+    const closeButton = document.createElement('div');
+    closeButton.classList.add('close-button');
+    closeButton.innerHTML = '&times;';
+    closeButton.addEventListener('click', function(event) {
+        event.stopPropagation();
+        closeArticle(article);
+    });
+    article.appendChild(closeButton);
+}
+
+function closeArticle(article) {
+    if (article) {
+        article.classList.remove('expanded');
+        const closeButton = article.querySelector('.close-button');
+        if (closeButton) {
+            closeButton.remove();
+        }
+    }
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+    fetch('data/articles.json')
+        .then(response => response.json())
+        .then(data => {
+            // Existing code to handle articles...
+        })
+        .catch(error => console.error('Error fetching articles:', error));
+});
+
+function openArticle(article) {
+    article.classList.add('expanded');
+    const closeButton = document.createElement('div');
+    closeButton.classList.add('close-button');
+    closeButton.innerHTML = '&times;';
+    closeButton.addEventListener('click', function(event) {
+        event.stopPropagation();
+        closeArticle(article);
+    });
+    article.appendChild(closeButton);
+}
+
+function closeArticle(article) {
+    if (article) {
+        article.classList.remove('expanded');
+        const closeButton = article.querySelector('.close-button');
+        if (closeButton) {
+            closeButton.remove();
+        }
+    }
+}
+
+
+document.addEventListener('DOMContentLoaded', function() {
+    fetch('data/articles.json')
+        .then(response => response.json())
+        .then(data => {
+            // Existing code to handle articles...
+        })
+        .catch(error => console.error('Error fetching articles:', error));
+});
+
+function openArticle(article) {
+    article.classList.add('expanded');
+    const closeButton = document.createElement('div');
+    closeButton.classList.add('close-button');
+    closeButton.innerHTML = '&times;';
+    closeButton.addEventListener('click', function(event) {
+        event.stopPropagation();
+        closeArticle(article);
+    });
+    article.appendChild(closeButton);
+}
+
+function closeArticle(article) {
+    if (article) {
+        article.classList.remove('expanded');
+        const closeButton = article.querySelector('.close-button');
+        if (closeButton) {
+            closeButton.remove();
+        }
+    }
+}
+
+
+document.addEventListener('DOMContentLoaded', function() {
+    fetch('data/articles.json')
+        .then(response => response.json())
+        .then(data => {
+            // Existing code to handle articles...
+        })
+        .catch(error => console.error('Error fetching articles:', error));
+});
+
+function openArticle(article) {
+    article.classList.add('expanded');
+    const closeButton = document.createElement('div');
+    closeButton.classList.add('close-button');
+    closeButton.innerHTML = '&times;';
+    closeButton.addEventListener('click', function(event) {
+        event.stopPropagation();
+        closeArticle(article);
+    });
+    article.appendChild(closeButton);
+}
+
+function closeArticle(article) {
+    if (article) {
+        article.classList.remove('expanded');
+        const closeButton = article.querySelector('.close-button');
+        if (closeButton) {
+            closeButton.remove();
+        }
+    }
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+    fetch('data/articles.json')
+        .then(response => response.json())
+        .then(data => {
             // Filter and display the latest news articles
-            const newsArticles = data.filter(article => article.type === 'news').slice(0, 3);
+            const newsArticles = data.filter(article => article.type === 'news').slice(0, 4);
             const newsContainer = document.getElementById('news-post-list');
             newsContainer.innerHTML = ''; // Clear existing content
             newsArticles.forEach(news => {
@@ -44,7 +170,7 @@ document.addEventListener('DOMContentLoaded', function() {
             });
 
             // Filter and display the latest reviews
-            const reviewArticles = data.filter(article => article.type === 'reviews').slice(0, 3);
+            const reviewArticles = data.filter(article => article.type === 'reviews').slice(0, 4);
             const reviewsContainer = document.getElementById('reviews-post-list');
             reviewsContainer.innerHTML = ''; // Clear existing content
             reviewArticles.forEach(review => {

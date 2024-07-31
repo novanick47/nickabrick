@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nick-a-Brick's Lego Brick Blog</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body class="index-page">
+    <header>
+        <div class="header-content">
+            <img src="images/logo1.jpg" alt="Logo" class="logo">
+            <h1>Welcome to Nick-a-Brick's Brick Blog!</h1>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="#hero" id="home-link">Home</a></li>
+                <li><a href="#reviews" id="reviews-link">Reviews</a></li>
+                <li><a href="#news" id="news-link">News</a></li>
+                <li><a href="#about" id="about-link">About</a></li>
+                <li><a href="#contact" id="contact-link">Contact</a></li>
+                <li><a href="search.html">Search</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="content-wrapper">
+        <main>
+            <section id="hero">
+                <h2>Featured Post</h2>
+                <p>This is a featured post section.</p>
+            </section>
+
+            <section id="news">
+                <h2>Latest News</h2>
+                <div class="post-list" id="news-post-list">
+                    <!-- Latest 4 news items will be dynamically included here -->
+                </div>
+                <a href="news.html" class="button-link">See More News</a>
+            </section>
+
+            <section id="reviews">
+                <h2>Latest Reviews</h2>
+                <div class="post-list" id="reviews-post-list">
+                    <!-- Latest 4 reviews will be dynamically included here -->
+                </div>
+                <a href="reviews.html" class="button-link">See More Reviews</a>
+            </section>
+
+            <section id="about">
+                <h2>About Section</h2>
+                <p>This section provides information about the website.</p>
+                <img src="images/logo1.jpg" alt="About Image">
+            </section>
+
+            <section id="contact">
+                <h2>Contact Section</h2>
+                <p>Contact us at <a href="mailto:example@example.com">example@example.com</a>.</p>
+            </section>
+        </main>
+
+        <aside class="sidebar">
+            <form id="searchForm" action="#" method="get">
+                <input type="text" id="searchInput" name="q" placeholder="Search the Bricklink database for LEGO sets..." required>
+                <button type="submit">Search</button>
+            </form>
+        </aside>
+    </div>
+
+    <div id="myModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <div id="results"></div>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2024 Nick-a-Brick. All rights reserved.</p>
+        <div class="social-media">
+            <a href="#">Facebook</a> | <a href="#">X</a> | <a href="#">Instagram</a> | <a href="#">YouTube</a>
+        </div>
+        </div>
+    </footer>
+
+    <div id="overlay" class="overlay">
+        <div id="expanded-article" class="expanded-article">
+            <button id="close-expanded-article" class="close-button">&times;</button>
+            <div id="expanded-content"></div>
+        </div>
+    </div>
+
+    <script src="js/scripts.js"></script>
+    <script src="js/rebrickable.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            function smoothScroll(target) {
+                document.getElementById(target).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            }
+
+            const hash = window.location.hash.substring(1);
+            if (hash) {
+                setTimeout(() => {
+                    smoothScroll(hash);
+                }, 100); // Slight delay to ensure the page has loaded
+            }
+
+            document.getElementById('contact-link').addEventListener('click', function (event) {
+                event.preventDefault();
+                smoothScroll('contact');
+            });
+
+            document.getElementById('about-link').addEventListener('click', function (event) {
+                event.preventDefault();
+                smoothScroll('about');
+            });
+
+            document.getElementById('reviews-link').addEventListener('click', function (event) {
+                event.preventDefault();
+                smoothScroll('reviews');
+            });
+
+            document.getElementById('news-link').addEventListener('click', function (event) {
+                event.preventDefault();
+                smoothScroll('news');
+            });
+
+            // Sidebar search functionality
+            const modal = document.getElementById('myModal');
+            const closeModalBtn = document.getElementsByClassName('close')[0];
+            const searchForm = document.getElementById('searchForm');
+
+            searchForm.addEventListener('submit', async function (event) {
+                event.preventDefault();
+                const query = document.getElementById('searchInput').value;
+                const resultsContainer = document.getElementById('results');
+
+                try {
+                    const data = await searchSets(query);
+                    console.log('Search results:', data); // Log the search results for debugging
+
+                    if (data.results && data.results.length > 0) {
+                        resultsContainer.innerHTML = data.results.map(set => `
+                            <div class="set">
+                                <h3>${set.name}</h3>
+                                <p>${set.set_num}</p>
+                                <p>Year: ${set.year}</p>
+                                <img src="${set.set_img_url}" alt="${set.name}">
+                            </div>
+                        `).join('');
+                    } else {
+                        resultsContainer.innerHTML = '<p>No results found.</p>';
+                    }
+
+                    modal.style.display = 'block';
+                } catch (error) {
+                    console.error('Error fetching data:', error);
+                }
+            });
+
+            closeModalBtn.onclick = function () {
+                modal.style.display = 'none';
+            }
+
+            window.onclick = function (event) {
+                if (event.target === modal) {
+                    modal.style.display = 'none';
+                }
+            }
+        });
+    </script>
+</body>
+</html>

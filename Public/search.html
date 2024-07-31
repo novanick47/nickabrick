@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search Our Content - Nick-a-Brick's Lego Brick Blog</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/search.css">
+</head>
+<body class="search-page">
+    <header>
+        <div class="header-content">
+            <img src="images/logo1.jpg" alt="Logo" class="logo">
+            <h1>Search Our Content</h1>
+            <div class="search-container">
+                <input type="text" id="search-box" placeholder="Search articles...">
+                <button id="search-button">Search</button>
+            </div>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="index.html#home">Home</a></li>
+                <li><a href="reviews.html">Reviews</a></li>
+                <li><a href="news.html">News</a></li>
+                <li><a href="index.html#about" id="about-link">About</a></li>
+                <li><a href="index.html#contact" id="contact-link">Contact</a></li>
+                <li><a href="search.html">Search</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="content-wrapper">
+        <main>
+            <section id="search-results">
+                <h2>Search Results</h2>
+                <div class="post-list" id="search-results-list">
+                    <!-- Search results will be dynamically included here -->
+                </div>
+                <div class="pagination" id="pagination">
+                    <!-- Pagination buttons will be dynamically added here -->
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <footer>
+        <p>&copy; 2024 Nick-a-Brick. All rights reserved.</p>
+        <div class="social-media">
+            <a href="#">Facebook</a> | <a href="#">Twitter</a> | <a href="#">Instagram</a>
+        </div>
+    </footer>
+
+    <!-- Overlay and expanded article for pop-outs -->
+    <div id="overlay" class="overlay">
+        <div id="expanded-article" class="expanded-article">
+            <button id="close-expanded-article" class="close-button">&times;</button>
+            <div id="expanded-content"></div>
+        </div>
+    </div>
+
+    <script src="js/search.js?v=1.0"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            function smoothScroll(target) {
+                document.getElementById(target).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            }
+
+            document.getElementById('contact-link').addEventListener('click', function (event) {
+                event.preventDefault();
+                if (window.location.pathname.endsWith('index.html')) {
+                    smoothScroll('contact');
+                } else {
+                    window.location.href = 'index.html#contact';
+                }
+            });
+
+            document.getElementById('about-link').addEventListener('click', function (event) {
+                event.preventDefault();
+                if (window.location.pathname.endsWith('index.html')) {
+                    smoothScroll('about');
+                } else {
+                    window.location.href = 'index.html#about';
+                }
+            });
+        });
+    </script>
+</body>
+</html>
