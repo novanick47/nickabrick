@@ -266,3 +266,135 @@ function closeArticle(article) {
         }
     }
 }
+document.addEventListener('DOMContentLoaded', function() {
+    const carouselInner = document.querySelector('.carousel-inner');
+    const prevButton = document.querySelector('.carousel-control-prev');
+    const nextButton = document.querySelector('.carousel-control-next');
+    const overlay = document.getElementById('overlay');
+    const expandedContent = document.getElementById('expanded-content');
+    const closeExpandedArticleButton = document.getElementById('close-expanded-article');
+
+    let currentIndex = 0;
+    let featuredArticles = [];
+
+    // Fetch articles from articles.json
+    fetch('data/articles.json')
+        .then(response => response.json())
+        .then(data => {
+            // Filter articles with the tag "featured post"
+            featuredArticles = data.filter(article => article.tags.includes('featured post'));
+            displayFeaturedArticles();
+            autoScrollCarousel();
+
+            // Add event listeners for tag clicks
+            document.querySelectorAll('.tag').forEach(tag => {
+                tag.addEventListener('click', function(event) {
+                    event.preventDefault();
+                    const tagName = this.getAttribute('data-tag');
+                    closeArticle(document.querySelector('.expanded'));
+                    window.location.href = `tags.html?tag=${tagName}`;
+                });
+            });
+        })
+        .catch(error => console.error('Error fetching articles:', error));
+
+    function displayFeaturedArticles() {
+        carouselInner.innerHTML = '';
+        featuredArticles.forEach((article, index) => {
+            const item = document.createElement('div');
+            item.className = 'carousel-item';
+            if (index === 0) item.classList.add('active');
+            item.innerHTML = `
+                <img src="${article.image}" alt="${article.title}">
+                <div class="carousel-caption">
+                    <h3>${article.title}</h3>
+                    <p>${article.summary}</p>
+                    <p><strong>Tags:</strong> ${article.tags.map(tag => `<a href="#" class="tag" data-tag="${tag}">${tag}</a>`).join(', ')}</p>
+                </div>
+            `;
+            item.addEventListener('click', () => {
+                openArticle(article);
+            });
+            carouselInner.appendChild(item);
+        });
+        updateCarousel();
+    }
+
+    function updateCarousel() {
+        const items = document.querySelectorAll('.carousel-item');
+        items.forEach((item, index) => {
+            item.style.transform = `translateX(-${currentIndex * 100}%)`;
+        });
+    }
+
+    function autoScrollCarousel() {
+        setInterval(() => {
+            currentIndex = (currentIndex < featuredArticles.length - 1) ? currentIndex + 1 : 0;
+            updateCarousel();
+        }, 10000);
+    }
+
+    prevButton.addEventListener('click', () => {
+        currentIndex = (currentIndex > 0) ? currentIndex - 1 : featuredArticles.length - 1;
+        updateCarousel();
+    });
+
+    nextButton.addEventListener('click', () => {
+        currentIndex = (currentIndex < featuredArticles.length - 1) ? currentIndex + 1 : 0;
+        updateCarousel();
+    });
+
+    function openArticle(article) {
+        expandedContent.innerHTML = `
+            <h2>${article.title}</h2>
+            <img src="${article.image}" alt="${article.title}">
+            <p>${article.summary}</p>
+            <p>${article.content}</p>
+            <p><strong>Date:</strong> ${article.date}</p>
+            <p><strong>Tags:</strong> ${article.tags.map(tag => `<a href="#" class="tag" data-tag="${tag}">${tag}</a>`).join(', ')}</p>
+        `;
+        overlay.style.display = 'flex';
+
+        // Add event listeners for tag clicks in the expanded article
+        expandedContent.querySelectorAll('.tag').forEach(tag => {
+            tag.addEventListener('click', function(event) {
+                event.preventDefault();
+                const tagName = this.getAttribute('data-tag');
+                closeArticle();
+                window.location.href = `tags.html?tag=${tagName}`;
+            });
+        });
+    }
+
+    function closeArticle() {
+        overlay.style.display = 'none';
+    }
+
+    closeExpandedArticleButton.addEventListener('click', closeArticle);
+    overlay.addEventListener('click', function(event) {
+        if (event.target === overlay) {
+            closeArticle();
+        }
+    });
+});
+document.addEventListener('DOMContentLoaded', function() {
+    // Initialize Buy Me a Coffee button in both sections
+    if (window.BMCButton) {
+        window.BMCButton.init({
+            target: '#bmc-button-about'
+        });
+        window.BMCButton.init({
+            target: '#bmc-button-sidebar'
+        });
+    }
+});
+   // Example of making sure no JS is interfering
+   document.querySelectorAll('.social-media a').forEach(link => {
+    link.addEventListener('click', function(event) {
+        // Debugging purpose
+        console.log('Link clicked:', this.href);
+        // Ensure the default action happens
+        event.preventDefault();
+        window.open(this.href, '_blank');
+    });
+});
