@@ -1,3 +1,4 @@
+
 async function searchSets(query, page = 1) {
     const apiKey = '66f85a9f08eb2cdb83b8d778c183712a';  // Your Rebrickable API key
     const url = `https://rebrickable.com/api/v3/lego/sets/?search=${query}&page=${page}&page_size=10&key=${apiKey}`;
