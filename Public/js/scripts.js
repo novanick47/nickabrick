@@ -2,132 +2,6 @@ document.addEventListener('DOMContentLoaded', function() {
     fetch('data/articles.json')
         .then(response => response.json())
         .then(data => {
-            // Existing code to handle articles...
-        })
-        .catch(error => console.error('Error fetching articles:', error));
-});
-
-function openArticle(article) {
-    article.classList.add('expanded');
-    const closeButton = document.createElement('div');
-    closeButton.classList.add('close-button');
-    closeButton.innerHTML = '&times;';
-    closeButton.addEventListener('click', function(event) {
-        event.stopPropagation();
-        closeArticle(article);
-    });
-    article.appendChild(closeButton);
-}
-
-function closeArticle(article) {
-    if (article) {
-        article.classList.remove('expanded');
-        const closeButton = article.querySelector('.close-button');
-        if (closeButton) {
-            closeButton.remove();
-        }
-    }
-}
-
-document.addEventListener('DOMContentLoaded', function() {
-    fetch('data/articles.json')
-        .then(response => response.json())
-        .then(data => {
-            // Existing code to handle articles...
-        })
-        .catch(error => console.error('Error fetching articles:', error));
-});
-
-function openArticle(article) {
-    article.classList.add('expanded');
-    const closeButton = document.createElement('div');
-    closeButton.classList.add('close-button');
-    closeButton.innerHTML = '&times;';
-    closeButton.addEventListener('click', function(event) {
-        event.stopPropagation();
-        closeArticle(article);
-    });
-    article.appendChild(closeButton);
-}
-
-function closeArticle(article) {
-    if (article) {
-        article.classList.remove('expanded');
-        const closeButton = article.querySelector('.close-button');
-        if (closeButton) {
-            closeButton.remove();
-        }
-    }
-}
-
-
-document.addEventListener('DOMContentLoaded', function() {
-    fetch('data/articles.json')
-        .then(response => response.json())
-        .then(data => {
-            // Existing code to handle articles...
-        })
-        .catch(error => console.error('Error fetching articles:', error));
-});
-
-function openArticle(article) {
-    article.classList.add('expanded');
-    const closeButton = document.createElement('div');
-    closeButton.classList.add('close-button');
-    closeButton.innerHTML = '&times;';
-    closeButton.addEventListener('click', function(event) {
-        event.stopPropagation();
-        closeArticle(article);
-    });
-    article.appendChild(closeButton);
-}
-
-function closeArticle(article) {
-    if (article) {
-        article.classList.remove('expanded');
-        const closeButton = article.querySelector('.close-button');
-        if (closeButton) {
-            closeButton.remove();
-        }
-    }
-}
-
-
-document.addEventListener('DOMContentLoaded', function() {
-    fetch('data/articles.json')
-        .then(response => response.json())
-        .then(data => {
-            // Existing code to handle articles...
-        })
-        .catch(error => console.error('Error fetching articles:', error));
-});
-
-function openArticle(article) {
-    article.classList.add('expanded');
-    const closeButton = document.createElement('div');
-    closeButton.classList.add('close-button');
-    closeButton.innerHTML = '&times;';
-    closeButton.addEventListener('click', function(event) {
-        event.stopPropagation();
-        closeArticle(article);
-    });
-    article.appendChild(closeButton);
-}
-
-function closeArticle(article) {
-    if (article) {
-        article.classList.remove('expanded');
-        const closeButton = article.querySelector('.close-button');
-        if (closeButton) {
-            closeButton.remove();
-        }
-    }
-}
-
-document.addEventListener('DOMContentLoaded', function() {
-    fetch('data/articles.json')
-        .then(response => response.json())
-        .then(data => {
             // Filter and display the latest news articles
             const newsArticles = data.filter(article => article.type === 'news').slice(0, 4);
             const newsContainer = document.getElementById('news-post-list');
@@ -161,12 +35,29 @@ document.addEventListener('DOMContentLoaded', function() {
                     ${news.content && news.content.length > 300 ? `<a href="#" class="read-more">... read more</a>` : ''}
                     <p>Tags: ${news.tags.map(tag => `<a href="#" class="tag" data-tag="${tag}">${tag}</a>`).join(', ')}</p>
                 `;
+
                 article.addEventListener('click', function(event) {
                     if (!event.target.classList.contains('read-more') && !event.target.classList.contains('tag')) {
                         openArticle(article);
                     }
                 });
                 newsContainer.appendChild(article);
+
+                // Adjust content visibility based on total height
+                const contentWrapper = article.querySelector('.content-wrapper');
+                const content = contentWrapper.querySelector('.content');
+                const img = article.querySelector('img');
+                const totalHeight = content.offsetHeight + (img ? img.offsetHeight : 0);
+                const maxContentHeight = 500; // Adjust this value as needed
+
+                if (totalHeight > maxContentHeight) {
+                    content.style.maxHeight = `${maxContentHeight}px`;
+                    content.style.overflow = 'hidden';
+                    const readMoreLink = article.querySelector('.read-more');
+                    if (readMoreLink) {
+                        readMoreLink.style.display = 'block';
+                    }
+                }
             });
 
             // Filter and display the latest reviews
@@ -202,12 +93,29 @@ document.addEventListener('DOMContentLoaded', function() {
                     ${review.content && review.content.length > 300 ? `<a href="#" class="read-more">... read more</a>` : ''}
                     <p>Tags: ${review.tags.map(tag => `<a href="#" class="tag" data-tag="${tag}">${tag}</a>`).join(', ')}</p>
                 `;
+
                 article.addEventListener('click', function(event) {
                     if (!event.target.classList.contains('read-more') && !event.target.classList.contains('tag')) {
                         openArticle(article);
                     }
                 });
                 reviewsContainer.appendChild(article);
+
+                // Adjust content visibility based on total height
+                const contentWrapper = article.querySelector('.content-wrapper');
+                const content = contentWrapper.querySelector('.content');
+                const img = article.querySelector('img');
+                const totalHeight = content.offsetHeight + (img ? img.offsetHeight : 0);
+                const maxContentHeight = 200; // Adjust this value as needed
+
+                if (totalHeight > maxContentHeight) {
+                    content.style.maxHeight = `${maxContentHeight}px`;
+                    content.style.overflow = 'hidden';
+                    const readMoreLink = article.querySelector('.read-more');
+                    if (readMoreLink) {
+                        readMoreLink.style.display = 'block';
+                    }
+                }
             });
 
             // Add event listeners for "read more" links
@@ -266,6 +174,7 @@ function closeArticle(article) {
         }
     }
 }
+
 document.addEventListener('DOMContentLoaded', function() {
     const carouselInner = document.querySelector('.carousel-inner');
     const prevButton = document.querySelector('.carousel-control-prev');
@@ -377,6 +286,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 });
+
 document.addEventListener('DOMContentLoaded', function() {
     // Initialize Buy Me a Coffee button in both sections
     if (window.BMCButton) {
@@ -388,8 +298,9 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 });
-   // Example of making sure no JS is interfering
-   document.querySelectorAll('.social-media a').forEach(link => {
+
+// Example of making sure no JS is interfering
+document.querySelectorAll('.social-media a').forEach(link => {
     link.addEventListener('click', function(event) {
         // Debugging purpose
         console.log('Link clicked:', this.href);
@@ -398,3 +309,22 @@ document.addEventListener('DOMContentLoaded', function() {
         window.open(this.href, '_blank');
     });
 });
+// Get the button:
+let mybutton = document.getElementById("myBtn");
+
+// When the user scrolls down 20px from the top of the document, show the button
+window.onscroll = function() {scrollFunction()};
+
+function scrollFunction() {
+  if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+    mybutton.style.display = "block";
+  } else {
+    mybutton.style.display = "none";
+  }
+}
+
+// When the user clicks on the button, scroll to the top of the document
+function topFunction() {
+  document.body.scrollTop = 0; // For Safari
+  document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
+}
