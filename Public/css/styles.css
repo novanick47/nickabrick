@@ -72,7 +72,8 @@ section {
     padding: 20px;
     margin: 20px 0;
     width: 80%;
-    max-width: 800px;
+    max-width: 1000px;   /* Adjusts the width of the main columns */
+}
     text-align: center;
 }
 
@@ -151,9 +152,9 @@ footer {
 }
 
 .articles-list .post {
-    flex: 1 1 calc(33.333% - 20px); /* 2 items per row with a gap of 20px */
+    flex: 1 1 calc(50% - 20px); /* 2 items per row with a gap of 20px */
     box-sizing: border-box;
-    max-width: calc(33.333% - 20px);
+    max-width: calc(50.% - 20px);
 }
 
 /* Responsive Grid Adjustments */
@@ -171,9 +172,14 @@ footer {
     }
 }
 
-/* Button Link Styling */
+.button-links-container {
+    display: flex;
+    justify-content: center; /* Center the buttons horizontally */
+    gap: 10px; /* Space between the buttons */
+    flex-wrap: wrap; /* Wrap buttons to new lines if necessary */
+}
+
 .button-link {
-    display: inline-block;
     padding: 10px 20px;
     background-color: #333;
     color: white;
@@ -182,7 +188,7 @@ footer {
     text-decoration: none;
     text-align: center;
     cursor: pointer;
-    margin-top: 20px;
+    margin: 20; /* Remove default margin if needed */
 }
 
 .button-link:hover {
@@ -628,12 +634,21 @@ html {
 .carousel-item {
     min-width: 100%;
     box-sizing: border-box;
+    height: 450px; /* Set a fixed height or adjust as needed */
+    display: flex;
+    align-items: center; /* Center the image vertically */
+    justify-content: center; /* Center the image horizontally */
+    object-fit: scale-down;
+}
+.carousel-item img {
+    position: flex;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: scale-down;
 }
 
-.carousel img {
-    width: 75%;
-    height: auto;
-}
 
 .carousel-control-prev,
 .carousel-control-next {
@@ -664,14 +679,14 @@ html {
     height: 100%;
     background: rgba(0, 0, 0, 0.8);
     z-index: 1000;
-    justify-content: center;
+    justify-content:  center;
     align-items: center;
 }
 
 .expanded-article {
     background: white;
-    width: 90%;
-    max-width: 800px;
+    width: 80%;
+    max-width: 90%;
     max-height: 90%;
     overflow: auto;
     position: relative;
@@ -679,7 +694,25 @@ html {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     border-radius: 8px;
 }
-
+.expanded-article img {
+    display: block;
+    max-width: 100%;
+    max-height: 80vh; /* Constrain height to avoid overflow */
+    margin: 0 auto; /* Center horizontally */
+    
+}
+.expanded-article h1, .expanded-article h2, .expanded-article h3 {
+    margin: 0;
+    text-align: center; /* Center the header text */
+    width: 100%; /* Ensure header takes full width */
+    box-sizing: border-box; /* Include padding and border in element’s total width and height */
+}
+.expanded-article video {
+    display: block;
+    max-width: 100%;
+    max-height: 80vh; /* Constrain height to avoid overflow */
+    margin: 0 auto; /* Center horizontally */
+}  
 .close-button {
     position: absolute;
     top: 10px;
@@ -840,21 +873,33 @@ html {
     margin-top: 2rem; /* Space between other elements and the Instagram post */
 }
 
+/* Ensure the container has enough space and is centered */
+.flexbox-container {
+    display: flex;
+    justify-content: center; /* Centers media horizontally */
+    align-items: center; /* Centers media vertically */
+    flex-direction: column; /* Stacks media items vertically */
+    width: 100%; /* Adjust based on your layout needs */
+    padding: 20px; /* Optional: Adds padding around the container */
+    box-sizing: border-box; /* Includes padding in the width/height calculation */
+}
+
 /* Video styles */
 .flexbox-container video {
-    max-width: 100%; /* Ensures the video scales within the container */
-    max-height: 300px; /* Set a max height to prevent the container from becoming too large */
-    height: auto; /* Maintain aspect ratio */
-    object-fit: ficontain
-    ll; /* Ensures the video maintains its aspect ratio */
+    max-width: 100%; /* Ensures the video scales down to fit within the container width */
+    max-height: 300px; /* Limits the height to prevent it from getting too large */
+    width: auto; /* Allows the width to adjust based on the aspect ratio */
+    height: auto; /* Maintains aspect ratio */
+    object-fit: contain; /* Ensures the video maintains its aspect ratio */
     border-radius: 8px; /* Optional: for rounded corners */
 }
+
 /* Common media styles for images and videos */
 .flexbox-container img,
 .flexbox-container video {
-    max-width: 100%;
-    max-height: 300px; /* Set a max height to prevent the container from becoming too large */
-    height: auto; /* Maintain aspect ratio */
+    max-width: 100%; /* Ensures the media scales down to fit within the container width */
+    max-height: 300px; /* Limits the height to prevent it from getting too large */
+    height: auto; /* Maintains aspect ratio */
     object-fit: contain; /* Ensures the media maintains its aspect ratio */
     border-radius: 8px; /* Optional: for rounded corners */
 }
@@ -894,4 +939,32 @@ html {
 
 .read-more:hover {
     text-decoration: underline;
+}
+#news, #reviews {
+    text-align: center; /* Center the button within the section */
+}
+
+.button-link {
+    display: inline-block; /* Ensures the button respects padding and margins */
+    padding: 10px 20px;
+    background-color: #333;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    text-decoration: none;
+    text-align: center;
+    cursor: pointer;
+    margin-top: 20px; /* Space above the button */
+}
+
+.button-link:hover {
+    background-color: #555;
+}
+#contact {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Center horizontally */
+    justify-content: center; /* Center vertically */
+    text-align: center; /* Center text */
+    padding: 20px; /* Add padding if needed */
 }
