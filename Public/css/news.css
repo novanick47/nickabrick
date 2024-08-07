@@ -1,12 +1,44 @@
-/* Specific styles for news page */
-.news-page .articles-list {
+/* Container for main content and sidebar */
+.container {
+    display: grid;
+    grid-template-columns: 1fr 300px; /* Main content takes up the remaining space, sidebar is 300px wide */
+    gap: 20px;
+  }
+  
+  /* Main content styles */
+  .main-content {
+    background-color: #fff;
+    padding: 20px;
+    border: 1px solid #ccc;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Sidebar styles */
+  .sidebar {
+    background-color: #f9f9f9;
+    padding: 20px;
+    border: 1px solid #ccc;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Responsive styles */
+  @media (max-width: 768px) {
+    .container {
+      grid-template-columns: 1fr; /* Stack main content and sidebar vertically on small screens */
+    }
+    .sidebar {
+      margin-top: 20px; /* Add space between main content and sidebar when stacked */
+    }
+  }
+  
+  .news-page .articles-list {
     display: flex;
     flex-wrap: wrap;
     gap: 20px;
     justify-content: center;
-}
-
-.news-page .articles-list .post {
+  }
+  
+  .news-page .articles-list .post {
     flex: 1 1 calc(50% - 20px); /* 2 items per row with a gap of 20px */
     box-sizing: border-box;
     max-width: calc(50% - 20px);
@@ -15,9 +47,9 @@
     transition: transform 0.3s ease, box-shadow 0.3s ease, width 0.3s ease, height 0.3s ease, left 0.3s ease, top 0.3s ease;
     position: relative;
     z-index: 1;
-}
-
-.news-page .articles-list .post.expanded {
+  }
+  
+  .news-page .articles-list .post.expanded {
     width: 90vw;
     height: 90vh;
     position: fixed;
@@ -30,9 +62,9 @@
     background-color: white;
     padding: 20px;
     border-radius: 8px;
-}
-
-.news-page .articles-list .close-button {
+  }
+  
+  .news-page .articles-list .close-button {
     position: absolute;
     top: 10px;
     right: 10px;
@@ -45,14 +77,14 @@
     text-align: center;
     border-radius: 50%;
     cursor: pointer;
-}
-
-.news-page .articles-list .close-button:hover {
+  }
+  
+  .news-page .articles-list .close-button:hover {
     background-color: darkred;
-}
-
-/* Overlay Styles */
-.overlay {
+  }
+  
+  /* Overlay Styles */
+  .overlay {
     display: none; /* Hidden by default */
     position: fixed;
     top: 0;
@@ -63,9 +95,9 @@
     z-index: 1000; /* Place it on top */
     justify-content: center;
     align-items: center;
-}
-
-.expanded-article {
+  }
+  
+  .expanded-article {
     background: white;
     width: 80%;
     max-width: 800px;
@@ -75,9 +107,9 @@
     padding: 20px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     border-radius: 8px;
-}
-
-.close-button {
+  }
+  
+  .close-button {
     position: absolute;
     top: 10px;
     right: 10px;
@@ -91,20 +123,21 @@
     cursor: pointer;
     text-align: center;
     line-height: 30px;
-}
-
-.close-button:hover {
+  }
+  
+  .close-button:hover {
     background: #555;
-}
-
-/* Responsive styles */
-@media (max-width: 768px) {
+  }
+  
+  /* Responsive styles */
+  @media (max-width: 768px) {
     .news-page .articles-list .post {
-        width: 100%; /* Full width on small screens */
-        max-width: 100%;
+      width: 100%; /* Full width on small screens */
+      max-width: 100%;
     }
-}
-#myBtn {
+  }
+  
+  #myBtn {
     display: none; /* Hidden by default */
     position: fixed; /* Fixed/sticky position */
     bottom: 20px; /* Place the button at the bottom of the page */
@@ -123,3 +156,11 @@
   #myBtn:hover {
     background-color: #555; /* Add a dark-grey background on hover */
   }
+  
+  .bmc-button-container, .bmc-button-container-sidebar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px; /* Increase the space below the container */
+  }
+ 
