@@ -1,3 +1,4 @@
+/* Common Styles */
 body, html {
   margin: 0;
   padding: 0;
@@ -62,6 +63,20 @@ main {
   flex: 3;
   padding: 20px;
   display: flex;
+  flex-direction: colum;
+  align-items: top;
+}
+.index-page main {
+  flex: 3;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.search-page main {
+  flex: 3;
+  padding: 20px;
+  display: flex;
   flex-direction: column;
   align-items: center;
 }
@@ -78,13 +93,6 @@ section {
 
 #hero {
   text-align: center;
-}
-
-#news-post-list, #reviews-post-list {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 20px;
-  width: 100%;
 }
 
 .post {
@@ -237,7 +245,6 @@ footer {
 .button-link:hover {
   background-color: #555;
 }
-
 
 .content-wrapper .content {
   transition: max-height .2s ease-out;
@@ -609,7 +616,7 @@ html {
     justify-content: center;
     align-items: center;
     margin-bottom: 20px; /* Increase the space below the container */
-  }
+}
 
 .sidebar .search-box, .search-box {
   border: 1px solid #ddd;
@@ -651,11 +658,6 @@ html {
   padding-bottom: 3rem;
 }
 
-#about {
-  position: relative;
-  padding-bottom: 6rem;
-}
-
 .about-content {
   text-align: center;
 }
@@ -670,6 +672,7 @@ html {
 .instagram-post {
   margin-top: 2rem;
 }
+
 .see-more-news, .see-more-reviews {
   display: inline-block;
   margin-top: 20px; /* Increase this value for more space */
@@ -722,3 +725,341 @@ html {
   margin-top: auto;
 }
 
+/* Page-Specific Styles */
+
+/* News Page Styles */
+.news-page .content-wrapper {
+  display: flex;
+  flex-wrap: nowrap; /* Ensure the elements do not wrap */
+  justify-content: space-between;
+  gap: 20px;
+}
+
+/* Main content styles */
+.news-page .main-content {
+  flex: 3;
+}
+
+/* Sidebar styles */
+.news-page .sidebar {
+  flex: 1;
+  max-width: 350px;
+  background-color: #f9f9f9;
+  padding: 20px;
+  border: 1px solid #ccc;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Responsive styles */
+@media (max-width: 768px) {
+  .news-page .content-wrapper {
+    flex-direction: column;
+  }
+  .news-page .sidebar {
+    margin-top: 20px;
+  }
+}
+
+.news-page .articles-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+}
+
+.news-page .articles-list .post {
+  flex: 1 1 calc(50% - 20px); /* 2 items per row with a gap of 20px */
+  box-sizing: border-box;
+  max-width: calc(50% - 20px);
+  margin: 20px 0;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Floating box effect */
+  transition: transform 0.3s ease, box-shadow 0.3s ease, width 0.3s ease, height 0.3s ease, left 0.3s ease, top 0.3s ease;
+  position: relative;
+  z-index: 1;
+}
+
+.news-page .articles-list .post.expanded {
+  width: 90vw;
+  height: 90vh;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1000;
+  overflow: auto;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  background-color: white;
+  padding: 20px;
+  border-radius: 8px;
+}
+
+.news-page .articles-list .close-button {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background-color: red;
+  color: white;
+  font-size: 20px;
+  width: 30px;
+  height: 30px;
+  line-height: 30px;
+  text-align: center;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.news-page .articles-list .close-button:hover {
+  background-color: darkred;
+}
+
+/* Reviews Page Styles */
+.reviews-page .articles-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+}
+
+.reviews-page .articles-list .post {
+  flex: 1 1 calc(50% - 20px); /* 2 items per row with a gap of 20px */
+  box-sizing: border-box;
+  max-width: calc(50% - 20px);
+  margin: 20px 0;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Floating box effect */
+  transition: transform 0.3s ease, box-shadow 0.3s ease, width 0.3s ease, height 0.3s ease, left 0.3s ease, top 0.3s ease;
+  position: relative;
+  z-index: 1;
+}
+
+.reviews-page .articles-list .post.expanded {
+  width: 90vw;
+  height: 90vh;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1000;
+  overflow: auto;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  background-color: white;
+  padding: 20px;
+  border-radius: 8px;
+}
+
+.reviews-page .articles-list .close-button {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background-color: red;
+  color: white;
+  font-size: 20px;
+  width: 30px;
+  height: 30px;
+  line-height: 30px;
+  text-align: center;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.reviews-page .articles-list .close-button:hover {
+  background-color: darkred;
+}
+
+/* Tags Page Styles */
+.tags-page .articles-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+}
+
+.tags-page .articles-list .post {
+  flex: 1 1 calc(50% - 20px); /* 2 items per row with a gap of 20px */
+  box-sizing: border-box;
+  max-width: calc(50% - 20px);
+  margin: 20px 0;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Floating box effect */
+  transition: transform 0.3s ease, box-shadow 0.3s ease, width 0.3s ease, height 0.3s ease, left 0.3s ease, top 0.3s ease;
+  position: relative;
+  z-index: 1;
+}
+
+.tags-page .articles-list .post.expanded {
+  width: 90vw;
+  height: 90vh;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1000;
+  overflow: auto;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  background-color: white;
+  padding: 20px;
+  border-radius: 8px;
+}
+
+.tags-page .articles-list .close-button {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background-color: red;
+  color: white;
+  font-size: 20px;
+  width: 30px;
+  height: 30px;
+  line-height: 30px;
+  text-align: center;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.tags-page .articles-list .close-button:hover {
+  background-color: darkred;
+}
+
+/* Search Page Styles */
+.search-page .content-wrapper {
+  max-width: 100%; /* Use full width available */
+  margin: 0; /* Remove margins */
+  padding: 10px; /* Reduce padding */
+  box-sizing: border-box; /* Ensure padding and border are included in the width and height */
+}
+.search-page #search-results h2 {
+  display: block;
+  text-align: center;
+  margin: 0 auto;
+}
+.search-page .post-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px; /* Reduce gap between grid items */
+  justify-content: space-between; /* Distribute items evenly */
+  width: 100%; /* Ensure the post-list takes the full width of its container */
+}
+
+.search-page .post-list .post {
+  flex: 1 1 calc(33.333% - 20px); /* 3 items per row with a small gap */
+  box-sizing: border-box;
+  max-width: calc(100% - 20px); /* Ensure max-width to fit 3 items per row */
+  margin: 10px 0; /* Reduce margin between rows */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Floating box effect */
+  transition: transform 0.3s ease, box-shadow 0.3s ease, width 0.3s ease, height 0.3s ease, left 0.3s ease, top 0.3s ease;
+  position: relative;
+  z-index: 1;
+  padding: 10px; /* Add some padding inside the posts */
+  background-color: #fff; /* Ensure background color */
+}
+
+.search-page .post-list .post .content-wrapper .content {
+  max-height: 400px; /* Increase the max height to show more content */
+  overflow: hidden;
+}
+
+.search-page .post-list .post.expanded {
+  width: 90vw;
+  height: 90vh;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1000;
+  overflow: auto;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  background-color: white;
+  padding: 20px;
+  border-radius: 8px;
+}
+
+.search-page .post-list .close-button {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background-color: red;
+  color: white;
+  font-size: 20px;
+  width: 30px;
+  height: 30px;
+  line-height: 30px;
+  text-align: center;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.search-page .post-list .close-button:hover {
+  background-color: darkred;
+}
+
+/* Index Page Layout */
+.index-page .content-wrapper {
+  display: flex;
+  flex-wrap: nowrap; /* Ensure the elements do not wrap */
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.index-page .main-content {
+  flex: 3;
+  /* Additional styling specific to the main content */
+}
+
+.index-page .sidebar {
+  flex: 1;
+  max-width: 350px;
+  background-color: #f9f9f9;
+  padding: 20px;
+  border: 1px solid #ccc;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.index-page .articles-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+}
+
+.index-page .articles-list .post {
+  flex: 1 1 calc(50% - 20px); /* 2 items per row with a gap of 20px */
+  box-sizing: border-box;
+  max-width: calc(50% - 20px);
+  margin: 20px 0;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.index-page .articles-list .post.expanded {
+  width: 90vw;
+  height: 90vh;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1000;
+  overflow: auto;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  background-color: white;
+  padding: 20px;
+  border-radius: 8px;
+}
+
+.index-page .articles-list .close-button {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background-color: red;
+  color: white;
+  font-size: 20px;
+  width: 30px;
+  height: 30px;
+  line-height: 30px;
+  text-align: center;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.index-page .articles-list .close-button:hover {
+  background-color: darkred;
+}
+
+/* Make sure to include any other page-specific styles you want here */
