@@ -16,10 +16,8 @@ Follow these steps to get the project up and running:
 
 ### 1. Clone the repository
 
-Clone the project repository from GitHub to your local machine using the following command:
+Download the project locally to your desktop or desired folder.
 
-```sh
-git clone https://github.com/novanick47/nickabrick
 ```
 
 ### 2. Navigate to the project directory
@@ -63,11 +61,7 @@ You should now see Nick-a-Brick's Lego Brick Blog running locally.
 - `server.js`: The server code that serves the HTML, CSS, and JavaScript files.
 - `public/`: Contains the static files for the project.
   - `css/`: Contains the CSS stylesheets.
-    - `news.css`
-    - `reviews.css`
-    - `search.css`
     - `styles.css`
-    - `tags.css`
   - `data/`: Contains the JSON data files.
     - `articles.json`
   - `images/`: Contains the project images.
