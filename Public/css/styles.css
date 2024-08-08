@@ -162,7 +162,7 @@ footer {
   margin: 20px;
   text-align: center;
   width: 40%;
-  max-width: 400px;
+  max-width: 350px;
   padding-bottom: 3rem;
 }
 
@@ -535,7 +535,7 @@ html {
 
 .carousel-control-prev, .carousel-control-next {
   position: absolute;
-  top: 50%;
+  top: 5%;
   transform: translateY(-50%);
   background-color: #00000080;
   color: #fff;
@@ -1058,5 +1058,55 @@ html {
 .index-page .articles-list .close-button:hover {
   background-color: darkred;
 }
+@media (max-width: 768px) {
+  /* Hide sidebar on all pages except index */
+  .news-page aside.sidebar,
+  .reviews-page aside.sidebar,
+  .tags-page aside.sidebar,
+  .search-page aside.sidebar {
+    display: none;
+  }
 
-/* Make sure to include any other page-specific styles you want here */
+  .index-page aside.sidebar {
+    display: block;
+  }
+
+  .articles-list .post, .content-wrapper {
+      flex: 1 1 100%;
+      max-width: 100%;
+      flex-direction: column;
+      align-items: center;
+  }
+  
+  main {
+      width: 100%;
+      max-width: none;
+      order: 1;
+  }
+  
+  footer {
+      order: 2;
+  }
+  
+  header nav ul {
+      flex-direction: column;
+      gap: 10px;
+  }
+  
+  .button-link {
+      width: 100%;
+      box-sizing: border-box;
+  }
+  
+  section {
+      width: 100%;
+      max-width: none;
+      margin: 10px 0;
+  }
+}
+@media (max-width: 600px) {
+  .carousel-item img {
+    width: 75%; /* Adjust the percentage to make the image smaller */
+    height: auto; /* Maintain aspect ratio */
+  }
+}
