@@ -87,8 +87,7 @@ section {
   border-radius: 8px;
   padding: 20px;
   margin: 20px 0;
-  width: 80%;
-  max-width: 1000px;
+  width: 90%;
 }
 
 #hero {
@@ -177,7 +176,6 @@ footer {
 .articles-list .post {
   flex: 1 1 calc(50% - 20px);
   box-sizing: border-box;
-  max-width: calc(50.% - 20px);
 }
 
 @media (max-width: 1200px) {
@@ -690,16 +688,17 @@ html {
   background-color: #555;
 }
 
-/* Ensure the grid container is set up correctly for the index page sections */
 #news .post-list, #reviews .post-list {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row; /* Ensure rows are created */
   gap: 20px;
-  width: 100%;
+  width: 100%; /* Set to full width to make use of available space */
 }
 
-/* Ensure each grid item takes full width and height of its container */
 #news .post, #reviews .post {
+  flex: 1 1 calc(50% - 20px); /* Ensure each item takes up 50% of the width, accounting for the gap */
+  box-sizing: border-box; /* Include padding and border in the width */
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -770,7 +769,6 @@ html {
 .news-page .articles-list .post {
   flex: 1 1 calc(50% - 20px); /* 2 items per row with a gap of 20px */
   box-sizing: border-box;
-  max-width: calc(50% - 20px);
   margin: 20px 0;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Floating box effect */
   transition: transform 0.3s ease, box-shadow 0.3s ease, width 0.3s ease, height 0.3s ease, left 0.3s ease, top 0.3s ease;
@@ -823,7 +821,6 @@ html {
 .reviews-page .articles-list .post {
   flex: 1 1 calc(50% - 20px); /* 2 items per row with a gap of 20px */
   box-sizing: border-box;
-  max-width: calc(50% - 20px);
   margin: 20px 0;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Floating box effect */
   transition: transform 0.3s ease, box-shadow 0.3s ease, width 0.3s ease, height 0.3s ease, left 0.3s ease, top 0.3s ease;
