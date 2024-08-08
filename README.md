@@ -19,6 +19,7 @@ Follow these steps to get the project up and running:
 Download the project locally to your desktop or desired folder.
 
 ```
+```
 
 ### 2. Navigate to the project directory
 
