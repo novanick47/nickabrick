@@ -3,6 +3,16 @@
 
 Welcome to Nick-a-Brick's Lego Brick Blog! This project is a LEGO-themed blog that displays news, reviews, and other content. This README will guide you through the process of setting up and running the project locally.
 
+For my CodeYou Reviewers:
+
+The features I included from the requirements list:
+Use arrays, objects, sets or maps to store and retrieve data that is dispayed in your app.
+Retrieve data from a third-party API and use it to display something within your app. The search rebrickable search box on my index page uses the rebrickable api to search for any lego product ever made.
+Option swap for section one: Create a node.js web server using modern framework such as Express.js or Fastify.
+I also use a table/data sorting to sort based on clickable tags for the article content.
+I also use a JSON file as a database to store and dynamically retrieve articles.
+
+
 ## Prerequisites
 
 Before you begin, ensure you have the following installed on your machine:
