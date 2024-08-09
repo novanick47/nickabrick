@@ -525,6 +525,7 @@ html {
   align-items: center;
   justify-content: center;
   object-fit: scale-down;
+  cursor: pointer;
 }
 
 .carousel-item img {
@@ -879,6 +880,7 @@ html {
   transition: transform 0.3s ease, box-shadow 0.3s ease, width 0.3s ease, height 0.3s ease, left 0.3s ease, top 0.3s ease;
   position: relative;
   z-index: 1;
+  height: 100%
 }
 
 .tags-page .articles-list .post.expanded {
@@ -946,6 +948,7 @@ html {
   z-index: 1;
   padding: 10px; /* Add some padding inside the posts */
   background-color: #fff; /* Ensure background color */
+  height: 100%
 }
 
 .search-page .post-list .post .content-wrapper .content {
