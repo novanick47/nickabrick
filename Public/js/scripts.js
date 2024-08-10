@@ -328,3 +328,100 @@ function topFunction() {
   document.body.scrollTop = 0; // For Safari
   document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
 }
+function convertPoints() {
+    var points = document.getElementById("legoPoints").value;
+    var country = document.getElementById("currency").value;
+    var pointsPerUnit, currencySymbol;
+ 
+    // Conversion rates based on the provided values
+    switch (country) {
+        case 'AU':
+            pointsPerUnit = 4.5;
+            currencySymbol = 'A$';
+            break;
+        case 'UK':
+            pointsPerUnit = 8.0;
+            currencySymbol = '£';
+            break;
+        case 'CA':
+            pointsPerUnit = 5.0;
+            currencySymbol = 'C$';
+            break;
+        case 'CZ':
+            pointsPerUnit = 0.3;
+            currencySymbol = 'Kč';
+            break;
+        case 'DK':
+            pointsPerUnit = 1.0;
+            currencySymbol = 'kr';
+            break;
+        case 'EU':
+            pointsPerUnit = 7.5;
+            currencySymbol = '€';
+            break;
+        case 'HU':
+            pointsPerUnit = 2.0 / 100; // 100 Forint
+            currencySymbol = 'Ft';
+            break;
+        case 'MY':
+            pointsPerUnit = 1.5;
+            currencySymbol = 'RM';
+            break;
+        case 'MX':
+            pointsPerUnit = 0.35;
+            currencySymbol = 'MX$';
+            break;
+        case 'NZ':
+            pointsPerUnit = 4.0;
+            currencySymbol = 'NZ$';
+            break;
+        case 'NO':
+            pointsPerUnit = 0.75;
+            currencySymbol = 'kr';
+            break;
+        case 'PL':
+            pointsPerUnit = 1.5;
+            currencySymbol = 'zł';
+            break;
+        case 'SG':
+            pointsPerUnit = 5.0;
+            currencySymbol = 'S$';
+            break;
+        case 'KR':
+            pointsPerUnit = 0.55 / 100; // 100 Won
+            currencySymbol = '₩';
+            break;
+        case 'SE':
+            pointsPerUnit = 0.75;
+            currencySymbol = 'kr';
+            break;
+        case 'CH':
+            pointsPerUnit = 6.5;
+            currencySymbol = 'CHF';
+            break;
+        case 'JP':
+            pointsPerUnit = 5.5 / 100; // 100 Yen
+            currencySymbol = '¥';
+            break;
+        case 'US':
+        default:
+            pointsPerUnit = 6.5;
+            currencySymbol = '$';
+            break;
+    }
+ 
+    // Ensure points are a number
+    points = parseFloat(points);
+    if (isNaN(points) || points <= 0) {
+      document.getElementById("result").innerText = "Please enter a valid number of points.";
+      return;
+    }
+ 
+    // Calculate the local currency value based on LEGO points
+    var pointsForFiveDollars = 650; // 650 points = $5
+    var currencyValue = (points / pointsForFiveDollars) * (5 * (pointsPerUnit / 6.5));
+    
+    // Display the result
+    document.getElementById("result").innerText = "Value: " + currencySymbol + currencyValue.toFixed(2);
+  }
+ 

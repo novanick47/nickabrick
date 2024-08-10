@@ -385,6 +385,7 @@ button:hover {
   padding: 10px;
   margin-top: 10px;
   margin-bottom: 10px;
+  margin: auto;
 }
 
 #searchResults {
@@ -1112,4 +1113,34 @@ html {
     width: 75%; /* Adjust the percentage to make the image smaller */
     height: auto; /* Maintain aspect ratio */
   }
+}
+ #Calculator {
+  max-width: 300px;
+  margin-top: 25px;;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  background-color: #f9f9f9;
+}
+ #Calculator label, select, input, p {
+  display: block;
+  width: 100%;
+  margin-bottom: 10px;
+}
+#Calculator label {
+  color: #007BFF;
+}
+#Calculator input, select {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+#Calculator button:hover {
+  background-color: #218838;
+}
+#result {
+  font-size: 1.2em;
+  font-weight: bold;
+  color: #30a91b;
 }
