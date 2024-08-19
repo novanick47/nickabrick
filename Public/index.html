@@ -1,12 +1,21 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nick-a-Brick's Lego Brick Blog</title>
-    <link rel="stylesheet" href="css/styles.css">
-</head>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Nick-a-Brick's Lego Brick Blog</title>
+        <link rel="stylesheet" href="css/styles.css">
+    
+        <!-- Open Graph tags for link previews -->
+        <meta property="og:url" content="https://www.nickabrick.com/index.html" />
+        <meta property="og:type" content="website" />
+        <meta property="og:title" content="Nick-a-Brick - Discover Amazing LEGO Content" />
+        <meta property="og:description" content="Explore the latest news, reviews, and tips on LEGO from Nick-a-Brick's blog. Share the joy of LEGO with others!" />
+        <meta property="og:image" content="https://www.nickabrick.com/images/preview.jpg" />
+    </head>
+    
 <body class="index-page">
+    <div id="fb-root"></div>
     <header>
         <div class="header-content">
             <img src="images/logo1.jpg" alt="Logo" class="logo">
@@ -75,6 +84,7 @@
         </main>
 
         <aside class="sidebar">
+
             <div class="bmc-button-container-sidebar">
                 <a href="https://www.buymeacoffee.com/nickabrick" target="_blank">
                     <img src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" alt="Buy Me A Coffee" style="height: 60px; width: 217px;">
@@ -182,6 +192,21 @@
                 <button onclick="convertPoints()">Convert</button>
                 <p id="result"></p>
               </div>
+              <div class="sidebar-share-buttons" style="padding-left: 30px";>
+                <h3>Share This Page:</h3>
+                <div class="button-container">
+                    <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-show-count="false">Tweet</a>
+                    <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+            
+                    <div class="fb-share-button" 
+                    data-href="https://www.nickabrick.com/index.html" 
+                    data-layout="button_count">
+                    </div>
+            
+                    <button class="share-btn" id="copyLink">Copy Link</button>
+                </div>
+            </div>
+            
         </aside>
     </div>
  

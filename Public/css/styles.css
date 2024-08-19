@@ -49,7 +49,28 @@ header nav ul li {
 header nav ul li a {
   color: #fff;
   text-decoration: none;
+  position: relative; /* Necessary for the pseudo-element to be positioned correctly */
 }
+
+header nav ul li a::before {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 4px;
+  border-radius: 4px;
+  background-color: #fff; /* Background color for the hover effect */
+  bottom: 0;
+  left: 0;
+  transform-origin: right;
+  transform: scaleX(0);
+  transition: transform .3s ease-in-out;
+}
+
+header nav ul li a:hover::before {
+  transform-origin: left;
+  transform: scaleX(1);
+}
+
 
 .content-wrapper {
   display: flex;
@@ -232,7 +253,7 @@ footer {
   display: inline-block;
   margin-top: 20px; /* Increase this value for more space */
   padding: 10px 20px;
-  background-color: #333;
+  background-color: royalblue;
   color: #fff;
   border: none;
   border-radius: 5px;
@@ -296,7 +317,7 @@ footer {
   position: absolute;
   top: 10px;
   right: 10px;
-  background: #333;
+  background: red;
   color: #fff;
   border: none;
   border-radius: 50%;
@@ -362,12 +383,32 @@ aside.sidebar {
   margin: 0 10px;
   text-decoration: none;
   color: #fff;
+  position: relative; /* Necessary for the pseudo-element to be positioned correctly */
+}
+
+.social-media a::before {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 4px;
+  border-radius: 4px;
+  background-color: white; /* Background color for the hover effect */
+  bottom: 0;
+  left: 0;
+  transform-origin: right;
+  transform: scaleX(0);
+  transition: transform .3s ease-in-out;
+}
+
+.social-media a:hover::before {
+  transform-origin: left;
+  transform: scaleX(1);
 }
 
 button {
   background-color: #4CAF50;
   color: #fff;
-  padding: 10px 20px;
+  padding: 10px 10px;
   border: none;
   cursor: pointer;
   margin-top: 10px;
@@ -743,7 +784,7 @@ html {
 }
 
 /* Sidebar styles */
-.news-page .sidebar {
+.news-page .sidebar, .reviews-page .sidebar {
   flex: 1;
   max-width: 350px;
   background-color: #f9f9f9;
@@ -1146,3 +1187,50 @@ html {
   font-weight: bold;
   color: #30a91b;
 }
+.sidebar-share-buttons {
+  margin-top: 20px;
+  padding: 15px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  background-color: #fff;
+  text-align: center;
+}
+
+.sidebar-share-buttons h3 {
+  font-size: 18px;
+  margin-bottom: 10px;
+  text-align: center;
+  width: 100%; /* Ensure the heading takes the full width */
+}
+
+.sidebar-share-buttons .button-container {
+  display: flex;
+   /* Space between buttons */
+  align-items: center; /* Center buttons vertically */
+  gap: 10px; /* Adds a gap between the buttons */
+  align-content: space-around;
+  flex-wrap: nowrap;
+  justify-content: space-around;
+  flex-direction: row-reverse;
+}
+
+.sidebar-share-buttons .twitter-share-button,
+.sidebar-share-buttons .fb-share-button {
+  flex: 1;
+  max-width: 33%; /* Ensure each button doesn't exceed one-third of the width */
+  text-align: center;
+}
+
+.sidebar-share-buttons .share-btn {
+  flex: 0.9; /* Make the Copy Link button slightly smaller */
+  max-width: 20%; /* Reduce the width of the Copy Link button */
+  padding: 8px 10px; /* Adjust padding to make the button smaller */
+  background-color: red;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 14px;
+  text-align: center;
+}
+

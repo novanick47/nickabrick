@@ -1,4 +1,19 @@
 [
+     {
+        "title": "DreamZzz Nightmare Shark Ship",
+        "summary": "A Delightful build of a soon to be retiring set.",
+        "date": "2024-08-19",
+        "tags": [
+          "lego",
+          "dreamzzz",
+          "reviews",
+          "spooky"
+        ],
+        "type": "reviews",
+        "image": "",
+        "content": "<p> I saw that the Nightmare Shark Ship was on the list of retiring sets for the end of 2024 and I immediately added it to my next-to-buy list for Lego. Walmart.com had the set marked down to $104 from $139.99 and I just couldn't help myself. I've long been intrigued buy the Dreamzzz line, but this was my first time purchasing a set and I am very much glad that I did so. </p> <p> Like most, if not all, of the Dreamzzz lineup, you can choose from a couple different builds. For the Nightmare Shark Ship you can make it an airship or a ship on wheels. <img src='images/articles/nightmareshark1.jpg' alt='Nightmare Shark Airship'> <img src='images/articles/nightmareshark2.jpg' alt='Nightmare Shark Ship on Wheels'> </p> <p> I chose to make it the airship. The build was fun and whimsical and represents everything that the best of Lego can be. I typically focus on my Lego city and modulars, but this was a refreshing change of pace. Once I started the build, I couldn't stop. I put some spooky stories on YouTube, grabbed a cup of coffee, and had a delightful morning of building. The finished product is larger than I expected it to be and I couldn't be happier with it.</p> The set is set 71469, it contains 1389 pieces, contains 4 minifigures, and can be purchased directly from lego <a href='https://www.lego.com/en-us/product/nightmare-shark-ship-71469'>Here</a> As of this writing, Walmart still has it for $104 and it can be purchased <a href='https://www.walmart.com/ip/LEGO-DREAMZzz-Nightmare-Shark-Ship-71469-Construct-Building-Toy-Set-Flying-Pirate-Monster-Truck-Includes-4-Minifigures-Toy-Gift-Tweens-Kids-Ages-10-U/2745867138?classType=REGULAR&athbdg=L1100&from=/search'>Here</a> </p>\n",
+        "video": "images/articles/nightmareshark.mp4"
+      },
     {
         "title": "Exploring the LEGO Dungeons & Dragons Red Dragon's Tale Set",
         "summary": "An in-depth look at the LEGO Dungeons & Dragons Red Dragon's Tale set, its features, and what makes it a must-have for fans.",
@@ -21,7 +36,7 @@
         "title": "LEGO Natural History Museum (10326)",
         "summary": "An in-depth review of the LEGO Natural History Museum set, featuring a beautifully detailed replica of a museum with exhibits and architectural charm.",
         "date": "2024-08-05",
-        "tags": ["reviews", "lego", "set review", "featured post"],
+        "tags": ["reviews", "lego", "set review"],
         "type": "reviews",
         "image": "images/Articles/history1.jpg",
         "content": "<p>The LEGO Natural History Museum (10326) is a delightful set for both LEGO enthusiasts and museum lovers. The set beautifully captures the essence of a natural history museum with its intricate design and attention to detail. The exterior features a grand facade with classical architectural elements, making it an eye-catching display piece.</p><p>The building experience is engaging and rewarding. With over 2,500 pieces, it’s a satisfying project for both adults and older kids. The instructions are clear and well-organized, making the assembly process smooth. The set includes a variety of building techniques and elements, adding to the fun of putting it together.</p><p>The museum features several rooms, including a fossil hall, a diorama of a dinosaur skeleton, and various exhibits showcasing different aspects of natural history. The attention to detail in these exhibits is impressive, with tiny elements that represent everything from gemstones to ancient artifacts. The set also includes minifigures of museum staff and visitors, adding life to the model.</p><p>This set has a strong educational component. It introduces builders to concepts related to natural history and paleontology in an engaging way. The detailed exhibits and accurate representations can spark interest in these subjects and offer a fun way to learn about history and science.</p><p>Once completed, the LEGO Natural History Museum makes a stunning display piece. Its detailed architecture and rich interior make it a great addition to any LEGO collection. It also stands out as a unique piece in LEGO’s architecture line, offering something different from their typical city or landmark sets.</p><p>Overall, the LEGO Natural History Museum (10326) is a fantastic set that combines impressive design, an engaging building experience, and educational value. It’s a great choice for LEGO enthusiasts who appreciate detailed and complex models, as well as for anyone interested in natural history and museums. Its quality and attention to detail make it a standout piece in any collection.</p><p>For more visuals, check out the gallery below:</p><img src='images/Articles/history1.jpg'><img src='images/Articles/history2.jpg'><p>Watch the detailed review video:</p><video src='images/Articles/historyvideo1.mp4' controls></video>"
@@ -29,17 +44,20 @@
     {
         "title": "Previous Review Title",
         "summary": "This is a summary of the previous review.",
-        "date": "2024-07-15",
+        "date": "2024-08-01",
         "tags": ["reviews", "set", "new release"],
         "type": "reviews"
     },
     {
-        "title": "Older News Title",
-        "summary": "This is a summary of an older news item.",
-        "date": "2024-07-01",
-        "tags": ["news", "review"],
-        "type": "news"
-    },
+        "title": "Tim Burton's The Nightmare Before Christmas Officially Revealed",
+        "summary": "Lego's newest spooky offering has been revealed.",
+        "date": "2024-08-01",
+        "tags": ["news", "halloween", "spooky", "lego", "featured post"],
+        "type": "news",
+        "image": "images/Articles/nightmare3.jpg",
+        "content": "<p>LEGO has officially unveiled set #21351, based on Tim Burton’s The Nightmare Before Christmas, created from a LEGO Ideas submission by fan designer Simon Scott. This 2,193-piece diorama allows fans to recreate scenes from the 1993 classic movie, including the iconic moon and Spiral Hill. It features eight minifigures, including Jack Skellington, Sally, and Santa Claus, but notably excludes Oogie Boogie. The set includes both Halloween and Christmas elements, making it a versatile display piece. It will be available for $199.99, with early access for LEGO Insiders on September 3, and general availability on September 6.</p><p>For more visuals, check out the gallery below:</p><img src='images/Articles/nightmare1.jpg'><img src='images/Articles/nightmare2.jpg'><img src='images/Articles/nightmare3.jpg'><img src='images/Articles/nightmare4.jpg'>",
+        "video": "images/Articles/nightmare.mp4"
+    },    
     {
         "title": "Older Review Title",
         "summary": "This is a summary of an older review.",
@@ -187,4 +205,5 @@
         "tags": ["news", "lego"],
         "type": "news"
     }
+   
 ]

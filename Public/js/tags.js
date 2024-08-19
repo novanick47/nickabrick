@@ -96,10 +96,10 @@ function displayArticles(articles, containerId) {
         }
 
         post.innerHTML = `
+           <h3>${article.title}</h3>   
             ${imagesHtml}
             ${videoHtml}
-            <h3>${article.title}</h3>
-            <p>${article.summary}</p>
+             <p>${article.summary}</p>
             <p>Date: ${article.date}</p>
             <div class="content-wrapper">
                 <div class="content" style="max-height: 200px; overflow: hidden;">${article.content ? article.content : ''}</div>

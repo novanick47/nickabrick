@@ -24,9 +24,9 @@ document.addEventListener('DOMContentLoaded', function() {
                 }
 
                 article.innerHTML = `
-                    ${imagesHtml}
+                   <h3>${news.title}</h3>
+                   ${imagesHtml}
                     ${videoHtml}
-                    <h3>${news.title}</h3>
                     <p>${news.summary}</p>
                     <p>Date: ${news.date}</p>
                     <div class="content-wrapper">
@@ -82,9 +82,10 @@ document.addEventListener('DOMContentLoaded', function() {
                 }
 
                 article.innerHTML = `
+                    <h3>${review.title}</h3>    
                     ${imagesHtml}
                     ${videoHtml}
-                    <h3>${review.title}</h3>
+                    
                     <p>${review.summary}</p>
                     <p>Date: ${review.date}</p>
                     <div class="content-wrapper">
@@ -424,4 +425,21 @@ function convertPoints() {
     // Display the result
     document.getElementById("result").innerText = "Value: " + currencySymbol + currencyValue.toFixed(2);
   }
- 
+  
+
+document.getElementById('copyLink').addEventListener('click', function() {
+    const url = window.location.href;
+    navigator.clipboard.writeText(url).then(() => {
+        alert('Link copied to clipboard!');
+    }).catch(err => {
+        console.error('Could not copy text: ', err);
+    });
+});
+// Load Facebook SDK for JavaScript
+(function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = "https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v3.0";
+    fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));
