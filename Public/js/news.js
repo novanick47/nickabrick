@@ -84,14 +84,18 @@ function displayArticles(articles, containerId) {
 
         let videoHtml = '';
         if (article.video) {
-            videoHtml = `<video controls>
-                            <source src="${article.video}" type="video/mp4">
-                            Your browser does not support the video tag.
-                         </video>`;
+            if (article.video.type === 'youtube') {
+                videoHtml = `<iframe width='560' height='315' src='https://www.youtube.com/embed/${article.video.id}' frameborder='0' allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture' allowfullscreen></iframe>`;
+            } else if (article.video.type === 'mp4') {
+                videoHtml = `<video controls>
+                                <source src="${article.video.src}" type="video/mp4">
+                                Your browser does not support the video tag.
+                             </video>`;
+            }
         }
 
         post.innerHTML = `
-             <h3>${article.title}</h3>    
+            <h3>${article.title}</h3>    
             ${imagesHtml}
             ${videoHtml}
             <p>${article.summary}</p>

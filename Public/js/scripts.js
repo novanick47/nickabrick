@@ -17,23 +17,27 @@ document.addEventListener('DOMContentLoaded', function() {
 
                 let videoHtml = '';
                 if (news.video) {
-                    videoHtml = `<video controls>
-                                    <source src="${news.video}" type="video/mp4">
-                                    Your browser does not support the video tag.
-                                 </video>`;
+                    if (news.video.type === 'youtube') {
+                        videoHtml = `<iframe width='560' height='315' src='https://www.youtube.com/embed/${news.video.id}' frameborder='0' allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture' allowfullscreen></iframe>`;
+                    } else if (news.video.type === 'mp4') {
+                        videoHtml = `<video controls>
+                                        <source src="${news.video.src}" type="video/mp4">
+                                        Your browser does not support the video tag.
+                                     </video>`;
+                    }
                 }
 
                 article.innerHTML = `
                    <h3>${news.title}</h3>
                    ${imagesHtml}
-                    ${videoHtml}
-                    <p>${news.summary}</p>
-                    <p>Date: ${news.date}</p>
-                    <div class="content-wrapper">
+                   ${videoHtml}
+                   <p>${news.summary}</p>
+                   <p>Date: ${news.date}</p>
+                   <div class="content-wrapper">
                         <div class="content" style="max-height: 200px; overflow: hidden;">${news.content ? news.content : ''}</div>
-                    </div>
-                    ${news.content && news.content.length > 300 ? `<a href="#" class="read-more">... read more</a>` : ''}
-                    <p>Tags: ${news.tags.map(tag => `<a href="#" class="tag" data-tag="${tag}">${tag}</a>`).join(', ')}</p>
+                   </div>
+                   ${news.content && news.content.length > 300 ? `<a href="#" class="read-more">... read more</a>` : ''}
+                   <p>Tags: ${news.tags.map(tag => `<a href="#" class="tag" data-tag="${tag}">${tag}</a>`).join(', ')}</p>
                 `;
 
                 article.addEventListener('click', function(event) {
@@ -75,17 +79,20 @@ document.addEventListener('DOMContentLoaded', function() {
 
                 let videoHtml = '';
                 if (review.video) {
-                    videoHtml = `<video controls>
-                                    <source src="${review.video}" type="video/mp4">
-                                    Your browser does not support the video tag.
-                                 </video>`;
+                    if (review.video.type === 'youtube') {
+                        videoHtml = `<iframe width='560' height='315' src='https://www.youtube.com/embed/${review.video.id}' frameborder='0' allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture' allowfullscreen></iframe>`;
+                    } else if (review.video.type === 'mp4') {
+                        videoHtml = `<video controls>
+                                        <source src="${review.video.src}" type="video/mp4">
+                                        Your browser does not support the video tag.
+                                     </video>`;
+                    }
                 }
 
                 article.innerHTML = `
                     <h3>${review.title}</h3>    
                     ${imagesHtml}
                     ${videoHtml}
-                    
                     <p>${review.summary}</p>
                     <p>Date: ${review.date}</p>
                     <div class="content-wrapper">
