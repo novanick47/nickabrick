@@ -18,7 +18,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 let videoHtml = '';
                 if (news.video) {
                     if (news.video.type === 'youtube') {
-                        videoHtml = `<iframe width='560' height='315' src='https://www.youtube.com/embed/${news.video.id}' frameborder='0' allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture' allowfullscreen></iframe>`;
+                        videoHtml = `<iframe style="width: 80%; height: auto; aspect-ratio: 16 / 9;" src='https://www.youtube.com/embed/${news.video.id}' frameborder='0' allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture' allowfullscreen></iframe>`;
                     } else if (news.video.type === 'mp4') {
                         videoHtml = `<video controls>
                                         <source src="${news.video.src}" type="video/mp4">
@@ -80,7 +80,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 let videoHtml = '';
                 if (review.video) {
                     if (review.video.type === 'youtube') {
-                        videoHtml = `<iframe width='560' height='315' src='https://www.youtube.com/embed/${review.video.id}' frameborder='0' allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture' allowfullscreen></iframe>`;
+                        videoHtml = `<iframe style="width: 80%; height: auto; aspect-ratio: 16 / 9;" src='https://www.youtube.com/embed/${review.video.id}' frameborder='0' allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture' allowfullscreen></iframe>`;
                     } else if (review.video.type === 'mp4') {
                         videoHtml = `<video controls>
                                         <source src="${review.video.src}" type="video/mp4">
