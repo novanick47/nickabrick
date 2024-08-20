@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form to JSON</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            display: flex;
+            justify-content: space-between;
+        }
+        .form-container {
+            width: 65%;
+        }
+        .hints-container {
+            width: 30%;
+            margin-left: 20px;
+            border-left: 2px solid #ddd;
+            padding-left: 20px;
+        }
+        label {
+            display: block;
+            margin-top: 10px;
+        }
+        input, textarea, select {
+            width: 100%;
+            padding: 8px;
+            margin-top: 5px;
+            box-sizing: border-box;
+        }
+        textarea {
+            height: 800px; /* Increased height for content box */
+            line-height: 1.5; /* Space out the lines */
+            font-size: 16px; /* Improve readability */
+            font-family: "Courier New", Courier, monospace; /* Monospaced font for easier reading */
+        }
+        textarea#summary {
+            height: 100px; /* Set to a smaller height */
+            width: 100%; /* Keep the width full, or adjust as needed */
+        }
+        pre {
+            background-color: #f4f4f4;
+            padding: 10px;
+            border: 1px solid #ddd;
+            margin-top: 20px;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+        }
+        .hint {
+            background-color: #e7f3fe;
+            padding: 10px;
+            border: 1px solid #b3d4fc;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="form-container">
+        <h2>Enter Data to Generate JSON</h2>
+        <form id="dataForm">
+            <label for="title">Title:</label>
+            <input type="text" id="title" name="title" required>
+
+            <label for="summary">Summary:</label>
+            <textarea id="summary" name="summary" required></textarea>
+
+            <label for="date">Date:</label>
+            <input type="date" id="date" name="date" required>
+
+            <label for="tags">Tags (comma separated):</label>
+            <input type="text" id="tags" name="tags" required>
+
+            <label for="type">Type:</label>
+            <select id="type" name="type" required>
+                <option value="news">News</option>
+                <option value="reviews">Reviews</option>
+            </select>
+
+            <label for="image">Image URL:</label>
+            <input type="text" id="image" name="image" value="images/articles/" required>
+
+            <!-- New fields for video type and source -->
+            <label for="videoType">Video Type:</label>
+            <select id="videoType" name="videoType" onchange="toggleVideoSource()" required>
+                <option value="none">No Video</option>
+                <option value="mp4">MP4</option>
+                <option value="youtube">YouTube</option>
+            </select>
+
+            <label for="videoSrc" id="videoSrcLabel" style="display:none;">Video Source (URL or YouTube ID):</label>
+            <input type="text" id="videoSrc" name="videoSrc" style="display:none;">
+
+            <label for="content">Content:</label>
+            <textarea id="content" name="content" required></textarea>
+
+            <input type="button" value="Generate JSON" onclick="generateJSON()">
+        </form>
+
+        <h2>Generated JSON</h2>
+        <pre id="output"></pre>
+    </div>
+
+    <div class="hints-container">
+        <h3>Content Insertion Hints</h3>
+        <div class="hint">
+            <strong>Insert an Image:</strong><br>
+            <code>&lt;img src='images/articles/your-image.jpg' alt='description'&gt;</code><br>
+            <p>Use this to insert an image into your content. The <code>src</code> attribute specifies the path to the image file, and the <code>alt</code> attribute provides a text description for accessibility and SEO.</p>
+        </div>
+        <div class="hint">
+            <strong>Insert a Video:</strong><br>
+            <code>&lt;video src='images/articles/your-video.mp4' controls&gt;&lt;/video&gt;</code><br>
+            <p>This tag embeds a video into your page. The <code>src</code> attribute points to the video file, and the <code>controls</code> attribute adds play/pause controls for the user.</p>
+        </div>
+        <div class="hint">
+            <strong>Create a Link:</strong><br>
+            <code>&lt;a href='https://your-link.com'&gt;Your Link Text&lt;/a&gt;</code><br>
+            <p>This creates a hyperlink. The <code>href</code> attribute defines the URL to which the link points, and the text between the tags is what users will see and click on.</p>
+        </div>
+        <div class="hint">
+            <strong>Insert a Paragraph:</strong><br>
+            <code>&lt;p&gt;Your paragraph text here.&lt;/p&gt;</code><br>
+            <p>Use this tag to insert a block of text. The <code>&lt;p&gt;</code> tag defines a paragraph, which will be displayed as a block of text with some spacing above and below.</p>
+        </div>
+        <div class="hint">
+            <strong>Insert an Image with Enhanced Attributes:</strong><br>
+            <code>&lt;img src='images/articles/your-image.jpg' alt='description' width='500' height='300' loading='lazy'&gt;</code><br>
+            <p>This version of the image tag includes additional attributes for better control: <code>width</code> and <code>height</code> specify the size of the image, and <code>loading="lazy"</code> defers loading the image until it's near the viewport, improving page load times.</p>
+        </div>
+        <div class="hint">
+            <strong>Insert a Video with Enhanced Attributes:</strong><br>
+            <code>&lt;video src='images/articles/your-video.mp4' controls width='640' height='360' poster='images/articles/your-poster.jpg'&gt;Your browser does not support the video tag.&lt;/video&gt;</code><br>
+            <p>This enhanced video tag includes attributes for better control and user experience: <code>width</code> and <code>height</code> specify the video size, and <code>poster</code> shows an image (like a thumbnail) before the video is played.</p>
+        </div>
+        <div class="hint">
+            <strong>Create a Link with Enhanced Attributes:</strong><br>
+            <code>&lt;a href='https://your-link.com' target='_blank' rel='noopener noreferrer' title='Visit Your Link'&gt;Your Link Text&lt;/a&gt;</code><br>
+            <p>This enhanced link includes additional attributes for better functionality: <code>target="_blank"</code> opens the link in a new tab, <code>rel="noopener noreferrer"</code> improves security, and <code>title</code> provides additional information when the user hovers over the link.</p>
+        </div>
+        <h3>Text Styling Hints</h3>
+        <div class="hint">
+            <strong>Bold Text:</strong><br>
+            <code>&lt;strong&gt;Your bold text here.&lt;/strong&gt;</code><br>
+            <p>Use the <code>&lt;strong&gt;</code> tag to make the enclosed text bold. Example: <strong>This text is bold.</strong></p>
+        </div>
+        <div class="hint">
+            <strong>Italic Text:</strong><br>
+            <code>&lt;em&gt;Your italic text here.&lt;/em&gt;</code><br>
+            Use the <code>&lt;em&gt;</code> tag to italicize the enclosed text. Example: <em>This text is italicized.</em></em>
+        </div>
+        <div class="hint">
+            <strong>Underline Text:</strong><br>
+            <code>&lt;u&gt;Your underlined text here.&lt;/u&gt;</code><br>
+            <p>Use the <code>&lt;u&gt;</code> tag to underline the enclosed text. Example: <u>This text is underlined.</u></p>
+        </div>
+        <div class="hint">
+            <strong>Strike-through Text:</strong><br>
+            <code>&lt;s&gt;Your strikethrough text here.&lt;/s&gt;</code><br>
+            <p>Use the <code>&lt;s&gt;</code> tag to strike through the enclosed text. Example: <s>This text is struck through.</s></p>
+        </div>
+        <div class="hint">
+            <strong>Superscript Text:</strong><br>
+            <code>&lt;sup&gt;Your superscript text here.&lt;/sup&gt;</code><br>
+            <p>Use the <code>&lt;sup&gt;</code> tag to display the enclosed text as superscript. Example: E=mc<sup>2</sup></p>
+        </div>
+        <div class="hint">
+            <strong>Subscript Text:</strong><br>
+            <code>&lt;sub&gt;Your subscript text here.&lt;/sub&gt;</code><br>
+            <p>Use the <code>&lt;sub&gt;</code> tag to display the enclosed text as subscript. Example: H<sub>2</sub>O</p>
+        </div>
+        <div class="hint">
+            <strong>Monospaced Text:</strong><br>
+            <code>&lt;code&gt;Your monospaced text here.&lt;/code&gt;</code><br>
+            <p>Use the <code>&lt;code&gt;</code> tag to display the enclosed text in a monospaced font. Example: <code>This text is monospaced.</code></p>
+        </div>
+        <div class="hint">
+            <strong>Highlighted Text:</strong><br>
+            <code>&lt;mark&gt;Your highlighted text here.&lt;/mark&gt;</code><br>
+            <p>Use the <code>&lt;mark&gt;</code> tag to highlight the enclosed text. Example: <mark>This text is highlighted.</mark></p>
+        </div>
+        <div class="hint">
+            <strong>Small Text:</strong><br>
+            <code>&lt;small&gt;Your small text here.&lt;/small&gt;</code><br>
+            <p>Use the <code>&lt;small&gt;</code> tag to reduce the size of the enclosed text. Example: <small>This text is small.</small></p>
+        </div>
+    </div>
+
+       <script>
+        function toggleVideoSource() {
+            const videoType = document.getElementById('videoType').value;
+            const videoSrcLabel = document.getElementById('videoSrcLabel');
+            const videoSrcInput = document.getElementById('videoSrc');
+
+            if (videoType === 'none') {
+                videoSrcLabel.style.display = 'none';
+                videoSrcInput.style.display = 'none';
+                videoSrcInput.value = ''; // Clear the input
+            } else {
+                videoSrcLabel.style.display = 'block';
+                videoSrcInput.style.display = 'block';
+            }
+        }
+
+        function generateJSON() {
+            const formData = new FormData(document.getElementById('dataForm'));
+
+            // Create the video object based on the selected type
+            const videoType = formData.get("videoType");
+            let videoObject = null;
+
+            if (videoType === "mp4") {
+                videoObject = {
+                    type: "mp4",
+                    src: formData.get("videoSrc")
+                };
+            } else if (videoType === "youtube") {
+                videoObject = {
+                    type: "youtube",
+                    id: formData.get("videoSrc")
+                };
+            }
+
+            const jsonObject = {
+                title: formData.get("title"),
+                summary: formData.get("summary"),
+                date: formData.get("date"),
+                tags: formData.get("tags").split(',').map(tag => tag.trim()),
+                type: formData.get("type"),
+                image: formData.get("image"),
+                content: formData.get("content")
+            };
+
+            // Only add video to JSON if it's not "none"
+            if (videoType !== "none") {
+                jsonObject.video = videoObject;
+            }
+
+            let jsonString = JSON.stringify(jsonObject, null, 2);
+            jsonString += ','; // Add a comma after the closing brace
+            document.getElementById('output').textContent = jsonString;
+        }
+    </script>
+</body>
+</html>
